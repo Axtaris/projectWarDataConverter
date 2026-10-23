@@ -1,0 +1,8 @@
+# downloaded upstream data, the data set being updated, and generated output
+sources/
+baseline/
+data_bsd/
+data_new/
+informes/
+__pycache__/
+*.log
