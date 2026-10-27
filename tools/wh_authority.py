@@ -19,6 +19,9 @@ KW = {}
 for r in table('Datasheets_keywords'): KW.setdefault(r['datasheet_id'], set()).add(k(r['keyword']))
 CHAPTERS = {k(c) for c in ('Black Templars', 'Blood Angels', 'Dark Angels', 'Deathwatch', 'Space Wolves', 'Imperial Fists', 'Iron Hands', 'Raven Guard', 'Salamanders', 'Ultramarines', 'White Scars')}
 STAT = (('Movement', 'M'), ('Toughness', 'T'), ('Save', 'Sv'), ('Wounds', 'W'), ('Leadership', 'Ld'), ('OC', 'OC'))
+def ek_norm(x): return re.sub(r' (upgrade|one per army|aura)$', '', k(x))
+UPG = {}
+for r in table('Enhancements'): UPG[(ek_norm(r['detachment']), ek_norm(r['name']))] = UPG.get((ek_norm(r['detachment']), ek_norm(r['name'])), False) or r['upgrade'] == 'true'
 total = 0
 for name, fids in F.items():
     if a.only and a.only != name: continue
@@ -71,6 +74,12 @@ for name, fids in F.items():
             if not u['Flags']: u.pop('Flags')
         for t, x in list(mine.items()):
             if t not in wa and wa and added > 0: added -= 1; log.append(f"{u['Name']}: - {x['Title']}"); u['UnitAbilities'].remove(x)
+    # enhancements flagged "upgrade" by Wahapedia are the ones plain units (not only Characters) can take: the app reads that from Features
+    for d in doc.get('Dettachments', []):
+        for e in d.get('Enhancements', []):
+            ek = (ek_norm(d['Name']), ek_norm(e['Name']))
+            if UPG.get(ek) and 'Upgrade' not in (e.get('Features') or ''):
+                log.append(f"{d['Name']} / {e['Name']}: Upgrade feature"); e['Features'] = ','.join(x for x in (e.get('Features'), 'Upgrade') if x)
     print(f'{name}: {len(log)} changes'); total += len(log)
     for l in log: print('   ', l if a.show else l[:140])
     if a.write and log: json.dump(doc, open(path, 'w', encoding='utf-8', newline='\n'), ensure_ascii=False, indent=1)
