@@ -16,6 +16,7 @@ def clean(s, bullets=False):
     s = re.sub(r'<span class="kwb">(.*?)</span>', lambda m: kw_title(m), s)
     s = re.sub(r'</span>\s*<span[^>]*>', ' ', s) if False else s
     if bullets: s = re.sub(r'<li[^>]*>', '\u25aa ', s); s = re.sub(r'</li>\s*', '\n', s)
+    s = re.sub(r'</li>\s*', ' ', s) if not bullets else s
     s = re.sub(r'<br\s*/?>', '\n', s); s = re.sub(r'<[^>]+>', '', s)
     s = re.sub(r'[ \t]+', ' ', s); s = re.sub(r'\s*\n\s*', '\n', s)
     return s.strip()
@@ -29,11 +30,14 @@ def deshout(s):
     for part in re.split(r'(\[[^\]]*\])', s):
         out.append(part if part.startswith('[') else re.sub(r'(?<![A-Za-z0-9])[A-Z]{3,}(?![A-Za-z0-9])', lambda x: x.group(0).capitalize(), part))
     return ''.join(out)
+LBL = re.compile(r'(?:^|(?<=>)|(?<=\s))(?:<b>\s*)?(WHEN|TARGET|EFFECT|RESTRICTIONS?)\s*(?:</b>)?\s*:\s*(?:</b>)?')
 def blocks(desc):
-    """WHEN / TARGET / EFFECT / RESTRICTIONS out of the stratagem html"""
-    out = {}
-    for m in re.finditer(r'<b>\s*(WHEN|TARGET|EFFECT|RESTRICTIONS?)\s*:\s*</b>(.*?)(?=<b>\s*(?:WHEN|TARGET|EFFECT|RESTRICTIONS?)\s*:|\Z)', desc or '', re.S):
-        out[m.group(1).upper().rstrip('S')] = deshout(clean(m.group(2)))
+    """WHEN / TARGET / EFFECT / RESTRICTIONS out of the stratagem html. The labels appear as <b>WHEN:</b>, <b>WHEN</b>: or plain WHEN:."""
+    out, desc = {}, desc or ''
+    ms = list(LBL.finditer(desc))
+    for i, m in enumerate(ms):
+        end = ms[i + 1].start() if i + 1 < len(ms) else len(desc)
+        out[m.group(1).upper().rstrip('S')] = deshout(clean(desc[m.end():end]))
     return out
 PHASE = {'your turn': 'friendly', 'opponent\u2019s turn': 'opponent', 'either player\u2019s turn': 'any'}
 

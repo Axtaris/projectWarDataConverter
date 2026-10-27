@@ -245,6 +245,18 @@ for kk, bu in BSU.items():
 # ----- detachments and army rules come from the converted file (MFM list + Wahapedia texts + the dataset's curated fields carried over by name)
 applied['Dettachments'] = bs_doc['Dettachments'] if bs_doc['Dettachments'] else wo_doc['Dettachments']
 applied['ArmyRules'] = bs_doc.get('ArmyRules') or wo_doc['ArmyRules']
+# ----- leader lists: follow renames and drop references to units this file does not have (they could never be attached)
+by_key = {k(u['Name']): u['Name'] for u in applied['Units']}
+for u in applied['Units']:
+    li = u.get('LeaderInfo')
+    if not li or not li.get('UnitNames'): continue
+    new = []
+    for n in li['UnitNames']:
+        kn = k(n); kn = G['alias'].get(kn, kn)
+        if kn in by_key:
+            if by_key[kn] not in new: new.append(by_key[kn])
+        else: changes.append(f"{u['Name']}: leader target dropped (not in this file): {n}")
+    li['UnitNames'] = new
 json.dump(applied, open(os.path.join(a.out_dir, f'{a.name}.json'), 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
 open(os.path.join(a.out_dir, f'{a.name}.changes.txt'), 'w', encoding='utf-8').write('\n'.join(changes) + '\n')
 print(f'{a.name}: {len(applied["Units"])} units, {len(changes)} changes -> {a.out_dir}/{a.name}.json')
