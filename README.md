@@ -70,6 +70,8 @@ bash tools/apply_all.sh             # apply the decisions into data_new/ and pri
 bash tools/deploy.sh ../projectWar 11.3   # copy data_new/ into a checkout's data/ and stamp the data version
 ```
 
+Last step, `python -I -X utf8 tools/wh_authority.py <data dir> [--write]`: Wahapedia (11th edition) is the authority for what it publishes, so stat lines, ability names and ability texts are forced to its values (BSData still lags behind the 10th edition and can agree with stale data). Dry run unless `--write`.
+
 Both scripts accept a faction name to run just one, for example `bash tools/all.sh necrons` (report name) and `bash tools/apply_all.sh Necrons`. After `apply_all.sh`, the self-check should show almost only `OK`; a few `UPDATE` / `REVIEW` rows are normal.
 
 ### Folders
