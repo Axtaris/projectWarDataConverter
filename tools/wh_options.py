@@ -60,7 +60,7 @@ def parse_sentence(raw):
             return {'per': None, 'max': None, 'any': False, 'subj': subj, 'repl': None, 'items': [], 'upto': (n_, re.sub(r's$', '', mu.group(2).strip(' .')))}
         one = re.sub(r'^(?:up to \w+ of the following[^:]*|one of the following[^:]*|up to (?:one|two|\d+))\s*:?\s*', '', one, flags=re.I)
         if not one: return None
-        items = [x for x in re.split(r',\s+(?=\d|one|two)', one) if x.strip()]
+        items = [x for x in re.split(r',\s+(?=\d|one\b|two\b)', one) if x.strip()]
     if 'duplicate' in head.lower() and 'not allowed' not in head.lower(): pass
     return {'per': per, 'max': mx, 'any': anyn, 'subj': subj, 'repl': repl, 'items': [split_item(i) for i in items if i]}
 def process(u, texts, wlib):
@@ -120,11 +120,11 @@ class Lib:
             for g in u['Weapons']:
                 for w in g['Weapons']: self.by[norm(w['Name'])].append((u, g.get('IsMelee', False), w))
     def resolve_def(self, u, name):
-        dn = lambda x: re.sub(r'\s+', ' ', re.sub(r'and', ' ', norm(x))).strip()
+        dn = lambda x: re.sub(r'\s+', ' ', re.sub(r'\band\b', ' ', norm(x))).strip()
         return next((d['Key'] for d in u['UnitComposition'].get('WargearDefinitions', []) if dn(d['Key']) == dn(name)), None)
     def resolve(self, u, name):
         n = norm(name)
-        dn = lambda x: re.sub(r'\s+', ' ', re.sub(r'and', ' ', norm(x))).strip()
+        dn = lambda x: re.sub(r'\s+', ' ', re.sub(r'\band\b', ' ', norm(x))).strip()
         for d in u['UnitComposition'].get('WargearDefinitions', []):   # a priced definition keeps its own key ("2 multi-meltas" costs 10)
             if dn(d['Key']) == dn(name): return d['Key']
         own = {norm(w['Name']): w['Name'] for g in u['Weapons'] for w in g['Weapons']}
