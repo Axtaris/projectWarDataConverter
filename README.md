@@ -72,6 +72,8 @@ bash tools/deploy.sh ../projectWar 11.3   # copy data_new/ into a checkout's dat
 
 Last step, `python -I -X utf8 tools/wh_authority.py <data dir> [--write]`: Wahapedia (11th edition) is the authority for what it publishes, so stat lines, ability names and ability texts are forced to its values (BSData still lags behind the 10th edition and can agree with stale data). Dry run unless `--write`.
 
+Wargear options: `python -I -X utf8 tools/wh_options.py <data dir> [--write] [--report FILE]` rebuilds the options of each unit from the datasheet's option sentences (Wahapedia `Datasheets_options.csv`). A unit is left untouched, and listed in the report, when a sentence cannot be understood, when the model a sentence talks about is ambiguous, or when the rebuild would lose a priced option. The current list is in `informes/equipo-pendiente.md`.
+
 Both scripts accept a faction name to run just one, for example `bash tools/all.sh necrons` (report name) and `bash tools/apply_all.sh Necrons`. After `apply_all.sh`, the self-check should show almost only `OK`; a few `UPDATE` / `REVIEW` rows are normal.
 
 ### Folders
