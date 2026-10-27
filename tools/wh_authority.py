@@ -15,6 +15,9 @@ for c in ('Black Templars', 'Blood Angels', 'Dark Angels', 'Deathwatch', 'Space 
 def an(s): return k(re.sub(r'\([^)]*\)', ' ', s))
 def flat(s): return re.sub(r'\W+', '', s.lower())
 DS, MOD, ABL = table('Datasheets'), table('Datasheets_models'), table('Datasheets_abilities')
+ABIL = {r['id']: r for r in table('Abilities')}
+ALLAB = collections.defaultdict(list)
+for r in ABL: ALLAB[r['datasheet_id']].append(r)
 KW = {}
 for r in table('Datasheets_keywords'): KW.setdefault(r['datasheet_id'], set()).add(k(r['keyword']))
 CHAPTERS = {k(c) for c in ('Black Templars', 'Blood Angels', 'Dark Angels', 'Deathwatch', 'Space Wolves', 'Imperial Fists', 'Iron Hands', 'Raven Guard', 'Salamanders', 'Ultramarines', 'White Scars')}
@@ -67,8 +70,8 @@ for name, fids in F.items():
         have = {k(x) for x in u['Keywords']}
         for kwd in ('Character', 'Epic Hero'):
             if k(kwd) in KW.get(i, ()) and k(kwd) not in have: log.append(f"{u['Name']}: keyword + {kwd}"); u['Keywords'].append(kwd)
-        wtxt = ' '.join(re.sub(r'<[^>]+>', '', html.unescape(r['description'])).lower() for r in abl.get(i, []))
-        bits = (1 if re.search(r'cannot (?:be selected to be|be) your warlord', wtxt) else 0) | (2 if 'must be your warlord' in wtxt else 0)
+        wtxt = ' '.join(re.sub(r'<[^>]+>', '', html.unescape(r['description'] or ABIL.get(r['ability_id'], {}).get('description', ''))).lower() for r in ALLAB.get(i, []))   # core/faction abilities are only referenced by id (Last Survivor...)
+        bits = (1 if re.search(r'cannot (?:be selected (?:to be|as) |be )?your warlord', wtxt) else 0) | (2 if 'must be your warlord' in wtxt else 0)
         if (u.get('Flags', 0) & 3) != bits:
             log.append(f"{u['Name']}: warlord flags {u.get('Flags', 0) & 3} -> {bits}"); u['Flags'] = (u.get('Flags', 0) & ~3) | bits
             if not u['Flags']: u.pop('Flags')
