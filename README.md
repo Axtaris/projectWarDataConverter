@@ -32,7 +32,7 @@ The pipeline has three stages:
 
 ### Policies
 
-- Points: the MFM always wins.
+- Points: the MFM always wins. It is the official Munitorum Field Manual as published online by Games Workshop (the 11th edition has no PDF; printed copies are out of date from day one), read by the BSData scraper. Wahapedia's export lags behind it. `tools/check_mfm.sh` tells you when a newer version is published.
 - Texts and starting loadouts: Wahapedia wins over BSData (BSData has typos and truncated texts).
 - Units in neither Wahapedia nor the MFM are retired and removed. Legends units are excluded.
 - Renamed units are detected by content similarity plus a manual alias map.
