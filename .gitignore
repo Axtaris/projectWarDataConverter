@@ -7,3 +7,8 @@ informes/
 __pycache__/
 *.log
 baseline_ext/
+
+# private keys never go in the repository
+.env
+.env.*
+!.env.example
