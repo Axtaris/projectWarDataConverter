@@ -1,7 +1,7 @@
-"""Build a chapter file the way the dataset ships it: the Space Marines roster (shared units) plus the chapter's own units.
+"""Build a chapter file: the whole Space Marines roster (shared units) plus the chapter's own units.
 BSData keeps only the chapter-specific entries in the chapter catalogue and imports the rest from the Space Marines catalogue; the MFM chapter yaml
 says which shared units the chapter fields and at which points.
-usage: chapter.py <chapter name> <mfm chapter yaml or -> <current WO chapter json>   (reads/writes data_bsd/<name>.json, needs data_bsd/Space Marines.json)"""
+usage: chapter.py <chapter name> <mfm chapter yaml or -> <current chapter json>   (reads/writes data_bsd/<name>.json, needs data_bsd/Space Marines.json)"""
 import json, re, sys, yaml
 name, ymfm, wo_path = sys.argv[1:4]
 k = lambda s: re.sub(r'[^a-z0-9]+', ' ', s.replace('’', "'").lower()).strip()
@@ -21,16 +21,19 @@ if ymfm != '-':
         base = own.get(n) or sm.get(n)
         if not base: review.append(f"{mu['name']}: in the chapter MFM but in no converted catalogue"); continue
         u = json.loads(json.dumps(base)); u['Points'] = mfm_points(mu); roster[n] = u
-else:  # small chapters: only their own units (as the dataset ships them)
-    pass
+else:  # chapters without their own MFM file (the "codex" chapters): the whole Space Marines roster at base points, plus their own units
+    CHAPTERS = {'black templars', 'blood angels', 'dark angels', 'deathwatch', 'space wolves', 'imperial fists', 'iron hands', 'raven guard', 'salamanders', 'ultramarines', 'white scars'}
+    for n, u in sm.items():  # units that carry another chapter's keyword (Deathwatch kill teams, ...) are not shared
+        if {k(x) for x in u.get('FactionKeywords', [])} & (CHAPTERS - {k(name)}): continue
+        roster.setdefault(n, json.loads(json.dumps(u)))
 names = {k(u['Name']) for u in roster.values()}
 for u in roster.values():  # leaders can only lead units the chapter actually has
     li = u.get('LeaderInfo')
     if li and li.get('UnitNames'): li['UnitNames'] = [x for x in li['UnitNames'] if k(x) in names]
-# detachments: with a chapter yaml they come from it; without one keep only the ones projectWar already lists for this chapter
-cur = {k(d['Name']) for d in wo.get('Dettachments', [])}
-dets = own_doc['Dettachments'] if ymfm != '-' else [d for d in own_doc['Dettachments'] if k(d['Name']) in cur]
-if ymfm == '-': review += [f"detachment of the Space Marines list not kept for {name}: {d['Name']}" for d in own_doc['Dettachments'] if k(d['Name']) not in cur][:0]
+# detachments: with a chapter yaml they come from it; without one: every Space Marines detachment except the ones locked to another chapter
+LOCKED = {'Ultramarines': ['Blade of Ultramar'], 'Imperial Fists': ['Ceramite Sentinels'], 'Salamanders': ['Forgefather\u2019s Seekers'], 'Raven Guard': ['Shadowmark Talon'], 'White Scars': ['Spearpoint Task Force']}
+others = {k(d) for c, ds in LOCKED.items() if c != name for d in ds}
+dets = own_doc['Dettachments'] if ymfm != '-' else [d for d in own_doc['Dettachments'] if k(d['Name']) not in others]
 own_doc['Units'] = list(roster.values()); own_doc['Dettachments'] = dets
 json.dump(own_doc, open(f'data_bsd/{name}.json', 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
 open(f'data_bsd/{name}.json.review.txt', 'a', encoding='utf-8').write('\n'.join(review) + '\n')

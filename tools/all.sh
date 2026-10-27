@@ -5,13 +5,15 @@ cd "$(dirname "$0")/.." || exit 1
 SM="Imperium - Space Marines|Library - Astartes Heresy Legends|Imperium - Agents of the Imperium|Library - Titans|Imperium - Imperial Knights - Library"
 conv() { # name bsdfile mfm whfids libs report alias
   local n="$1" b="$2" m="$3" w="$4"; local L=(); IFS='|' read -ra A <<< "$5"; for l in "${A[@]}"; do [ -n "$l" ] && L+=(--lib "$B/$l.json"); done
-  python -I -X utf8 tools/bsd2pw.py --bsd "$B/$b.json" "${L[@]}" --gs "$B/Warhammer 40,000.json" --mfm "$B/$m.yaml" --wh "$w" --wo "baseline/$n.json" --out "data_bsd/$n.json" | head -1
+  local WB="baseline"; [ -f "baseline_ext/$n.json" ] && WB="baseline_ext"
+  python -I -X utf8 tools/bsd2pw.py --bsd "$B/$b.json" "${L[@]}" --gs "$B/Warhammer 40,000.json" --mfm "$B/$m.yaml" --wh "$w" --wo "$WB/$n.json" --out "data_bsd/$n.json" | head -1
   if [[ "$6" == capitulo-* ]]; then
     case "$n" in "Imperial Fists"|"Iron Hands"|"Raven Guard"|"Salamanders"|"Ultramarines"|"White Scars") cy="-";; *) cy="$B/$m.yaml";; esac
-    python -I -X utf8 tools/chapter.py "$n" "$cy" "baseline/$n.json"
+    python -I -X utf8 tools/chapter.py "$n" "$cy" "$WB/$n.json"
   fi
-  python -X utf8 tools/three_way.py --name "$n" --wh "$w" --mfm "$B/$m.yaml" --out "informes/$6.md" --alias "$7" | cut -c1-70
+  python -X utf8 tools/three_way.py --name "$n" --wh "$w" --mfm "$B/$m.yaml" --out "informes/$6.md" --alias "$7" --wo-dir "$WB" | cut -c1-70
 }
+python -I -X utf8 tools/chapter_baseline.py > /dev/null
 ONLY="$1"
 run() { [ -z "$ONLY" ] || [ "$ONLY" = "$6" ] && conv "$@"; }
 run "Necrons" "Necrons" necrons NEC "Unaligned Forces" necrons ""

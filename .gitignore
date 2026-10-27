@@ -6,3 +6,4 @@ data_new/
 informes/
 __pycache__/
 *.log
+baseline_ext/

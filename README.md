@@ -38,9 +38,13 @@ The pipeline has three stages:
 - Renamed units are detected by content similarity plus a manual alias map.
 - `tools/fixes.py` holds the hand-verified corrections that no source can express. It is idempotent.
 
+### Space Marine chapters
+
+A chapter is a customisation of the Space Marines roster, so `tools/chapter.py` builds each chapter file as *the whole shared roster plus the chapter's own units*. Chapters with their own Munitorum file (Black Templars, Blood Angels, Dark Angels, Deathwatch, Space Wolves) take their roster, points and detachments from it. The other six (Imperial Fists, Iron Hands, Raven Guard, Salamanders, Ultramarines, White Scars) get the full shared roster at base points and every Space Marines detachment except the ones locked to another chapter (see `LOCKED` in `chapter.py`). Units that carry another chapter's keyword are never shared. `tools/chapter_baseline.py` extends the baseline of those six with the shared units so their hand-curated fields are kept.
+
 ## Requirements
 
-- Python 3.10+ and a POSIX shell (Git Bash on Windows works).
+- Python 3.10+ with PyYAML (`pip install pyyaml`) and a POSIX shell (Git Bash on Windows works).
 - Roughly 60 MB of disk for the downloaded sources.
 
 ## Setup
@@ -75,6 +79,7 @@ Both scripts accept a faction name to run just one, for example `bash tools/all.
 | `tools/` | The pipeline | yes |
 | `sources/` | Downloaded upstream data | no |
 | `baseline/` | The data set being updated | no |
+| `baseline_ext/` | Baseline of the six codex chapters extended with the shared roster (generated) | no |
 | `data_bsd/` | Converted output and per-faction review notes | no |
 | `informes/` | Three-way comparison reports (Markdown) | no |
 | `data_new/` | Final output, ready to deploy | no |

@@ -3,7 +3,8 @@
 B="sources/bsd"
 cd "$(dirname "$0")/.." || exit 1
 ap() { # name whids mfm alias
-  PYTHONPATH=tools python -X utf8 tools/apply.py --name "$1" --wh "$2" --mfm "$B/$3.yaml" --alias "$4" 2>&1 | tail -1
+  local SRC="baseline"; [ -f "baseline_ext/$1.json" ] && SRC="baseline_ext"
+  PYTHONPATH=tools python -X utf8 tools/apply.py --name "$1" --wh "$2" --mfm "$B/$3.yaml" --alias "$4" --src "$SRC" 2>&1 | tail -1
   python -X utf8 tools/three_way.py --name "$1" --wh "$2" --mfm "$B/$3.yaml" --wo-dir data_new --alias "" --out data_new/_verify.md | python -X utf8 -c "
 import sys,ast,collections
 line=sys.stdin.read().strip(); d=ast.literal_eval(line.split(' ',1)[1]); c=collections.Counter()
