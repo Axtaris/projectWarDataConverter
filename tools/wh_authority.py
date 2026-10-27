@@ -2,7 +2,7 @@
 The three-way comparator keeps a value when BSData agrees with it, and BSData still lags behind (10th), so stale 10th values
 survived as "OK". This pass forces, for every unit found in Wahapedia: stat lines, ability names and ability texts.
 usage: python -I -X utf8 tools/wh_authority.py <data dir> [--write] [--only "Space Wolves"]   (dry run unless --write)"""
-import argparse, json, os, re, sys
+import argparse, html, json, os, re, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import wh_load
 from wh_load import table, key as k, clean, deshout
@@ -60,6 +60,15 @@ for name, fids in F.items():
                     log.append(f"{u['Name']}: text {mine[t]['Title']}" + (f"\n        old: {mine[t]['Text'][:200]!r}\n        new: {text[:200]!r}" if a.show else '')); mine[t]['Text'] = text
             else: log.append(f"{u['Name']}: + {title}"); u['UnitAbilities'].append({'Title': title, 'Text': text})
         added = sum(1 for t in wa if t not in mine)   # an ability only we have goes when Wahapedia added one under another name (a rename); otherwise it may be curated, so it stays
+        # Character / Epic Hero keywords decide who may be the Warlord; Wahapedia's "cannot / must be your Warlord" text decides the flags (bit 1 cannot, bit 2 must)
+        have = {k(x) for x in u['Keywords']}
+        for kwd in ('Character', 'Epic Hero'):
+            if k(kwd) in KW.get(i, ()) and k(kwd) not in have: log.append(f"{u['Name']}: keyword + {kwd}"); u['Keywords'].append(kwd)
+        wtxt = ' '.join(re.sub(r'<[^>]+>', '', html.unescape(r['description'])).lower() for r in abl.get(i, []))
+        bits = (1 if re.search(r'cannot (?:be selected to be|be) your warlord', wtxt) else 0) | (2 if 'must be your warlord' in wtxt else 0)
+        if (u.get('Flags', 0) & 3) != bits:
+            log.append(f"{u['Name']}: warlord flags {u.get('Flags', 0) & 3} -> {bits}"); u['Flags'] = (u.get('Flags', 0) & ~3) | bits
+            if not u['Flags']: u.pop('Flags')
         for t, x in list(mine.items()):
             if t not in wa and wa and added > 0: added -= 1; log.append(f"{u['Name']}: - {x['Title']}"); u['UnitAbilities'].remove(x)
     print(f'{name}: {len(log)} changes'); total += len(log)
