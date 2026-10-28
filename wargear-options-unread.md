@@ -3,93 +3,57 @@
 These units have option sentences the parser cannot turn into options safely. Review them by hand against the datasheet.
 
 
-## replaced item 'Heavy Bolt Pistol' is not in the starting wargear [] (24)
+## unparsed sentence (19)
 
-- Space Marines: **VANGUARD VETERAN SQUAD WITH JUMP PACKS**: replaced item 'Heavy Bolt Pistol' is not in the starting wargear []
-- Space Marines: **CAPTAIN ON BIKE**: replaced item 'Heavy Bolt Pistol' is not in the starting wargear []
-- Black Templars: **VANGUARD VETERAN SQUAD WITH JUMP PACKS**: replaced item 'Heavy Bolt Pistol' is not in the starting wargear []
-- Black Templars: **CAPTAIN ON BIKE**: replaced item 'Heavy Bolt Pistol' is not in the starting wargear []
-- Blood Angels: **VANGUARD VETERAN SQUAD WITH JUMP PACKS**: replaced item 'Heavy Bolt Pistol' is not in the starting wargear []
-- Blood Angels: **CAPTAIN ON BIKE**: replaced item 'Heavy Bolt Pistol' is not in the starting wargear []
-- Dark Angels: **VANGUARD VETERAN SQUAD WITH JUMP PACKS**: replaced item 'Heavy Bolt Pistol' is not in the starting wargear []
-- Dark Angels: **CAPTAIN ON BIKE**: replaced item 'Heavy Bolt Pistol' is not in the starting wargear []
-- Deathwatch: **VANGUARD VETERAN SQUAD WITH JUMP PACKS**: replaced item 'Heavy Bolt Pistol' is not in the starting wargear []
-- Deathwatch: **CAPTAIN ON BIKE**: replaced item 'Heavy Bolt Pistol' is not in the starting wargear []
-- Space Wolves: **VANGUARD VETERAN SQUAD WITH JUMP PACKS**: replaced item 'Heavy Bolt Pistol' is not in the starting wargear []
-- Space Wolves: **CAPTAIN ON BIKE**: replaced item 'Heavy Bolt Pistol' is not in the starting wargear []
-- Imperial Fists: **VANGUARD VETERAN SQUAD WITH JUMP PACKS**: replaced item 'Heavy Bolt Pistol' is not in the starting wargear []
-- Imperial Fists: **CAPTAIN ON BIKE**: replaced item 'Heavy Bolt Pistol' is not in the starting wargear []
-- Iron Hands: **VANGUARD VETERAN SQUAD WITH JUMP PACKS**: replaced item 'Heavy Bolt Pistol' is not in the starting wargear []
-- Iron Hands: **CAPTAIN ON BIKE**: replaced item 'Heavy Bolt Pistol' is not in the starting wargear []
-- Raven Guard: **VANGUARD VETERAN SQUAD WITH JUMP PACKS**: replaced item 'Heavy Bolt Pistol' is not in the starting wargear []
-- Raven Guard: **CAPTAIN ON BIKE**: replaced item 'Heavy Bolt Pistol' is not in the starting wargear []
-- Salamanders: **VANGUARD VETERAN SQUAD WITH JUMP PACKS**: replaced item 'Heavy Bolt Pistol' is not in the starting wargear []
-- Salamanders: **CAPTAIN ON BIKE**: replaced item 'Heavy Bolt Pistol' is not in the starting wargear []
-- Ultramarines: **VANGUARD VETERAN SQUAD WITH JUMP PACKS**: replaced item 'Heavy Bolt Pistol' is not in the starting wargear []
-- Ultramarines: **CAPTAIN ON BIKE**: replaced item 'Heavy Bolt Pistol' is not in the starting wargear []
-- White Scars: **VANGUARD VETERAN SQUAD WITH JUMP PACKS**: replaced item 'Heavy Bolt Pistol' is not in the starting wargear []
-- White Scars: **CAPTAIN ON BIKE**: replaced item 'Heavy Bolt Pistol' is not in the starting wargear []
-
-## unparsed sentence (13)
-
+- Astra Militarum: **DEATH KORPS OF KRIEG**: unparsed sentence: * You cannot select the same option more than once per unit unless it contains 20 models, 
 - Astra Militarum: **CADIAN RECON SQUAD**: unparsed sentence: You can select one of the following options: Up to one Recon Trooper can replace their las
 - Imperial Agents: **INQUISITOR**: unparsed sentence: If this model is equipped with 1 psychic gifts, its Inquisitorial melee weapon can be repl
 - Imperial Agents: **INQUISITORIAL AGENTS**: unparsed sentence:  **The some model cannot be equipped with more than one of these wargear options. 
+- Aeldari: **TROUPE**: unparsed sentence: If this unit contains 9 or fewer models: Up to 2 models can each have their shuriken pisto
 - Aeldari: **CORSAIR SKYREAVERS**: unparsed sentence: * You cannot select the same option more than once per unit unless it contains 10 models, 
 - Drukhari: **TALOS**: unparsed sentence: Any number of models can each replace one of their macro-scalpels with one of the followin
 - Drukhari: **WRACKS**: unparsed sentence: For every 5 models in this unit: 1 model's twin torturer's tools can be replaced with 1 he
+- Drukhari: **TROUPE**: unparsed sentence: If this unit contains 9 or fewer models: Up to 2 models can each have their shuriken pisto
 - Drukhari: **CORSAIR SKYREAVERS**: unparsed sentence: * You cannot select the same option more than once per unit unless it contains 10 models, 
 - Chaos Space Marines: **RED CORSAIRS RAIDERS**: unparsed sentence: For every 5 models in this unit: 1 Red Corsairs Raider's boltgun can be replaced with 1 me
 - Chaos Space Marines: **LEGIONARIES**: unparsed sentence: * Maximum 1 per model.
 - Death Guard: **HELBRUTE**: unparsed sentence: * That Helbrute fist cannot then be replaced.
 - Genestealer Cults: **NEOPHYTE HYBRIDS**: unparsed sentence: * To a maximum of 1 per 10 models in this unit.
+- Leagues of Votann: **HERNKYN PIONEERS**: unparsed sentence: * A model can only take one of these options, and cannot be equipped with a HYLas rotary c
+- Tau Empire: **COMMANDER IN ENFORCER BATTLESUIT**: unparsed sentence: * This model cannot have duplicates of these pieces of wargear. 
+- Tau Empire: **COMMANDER IN COLDSTAR BATTLESUIT**: unparsed sentence: * This model cannot have duplicates of these pieces of wargear.
 - Tau Empire: **VESPID STINGWINGS**: unparsed sentence: If this unit contains 10 models: The Vespid Strain Leader can be equipped with 1 Oversight
 - Tyranids: **HIVE TYRANT**: unparsed sentence: *This model cannot be equipped with both a stranglethorn cannon and a heavy venom cannon. 
 
-## offered item 'Relic Power Fist' has no profile (12)
+## would drop the option heavy bolter of sternguard veteran sergeant, which the datasheet still mentions (12)
 
-- Space Marines: **CAPTAIN IN GRAVIS ARMOUR**: offered item 'Relic Power Fist' has no profile
-- Black Templars: **CAPTAIN IN GRAVIS ARMOUR**: offered item 'Relic Power Fist' has no profile
-- Blood Angels: **CAPTAIN IN GRAVIS ARMOUR**: offered item 'Relic Power Fist' has no profile
-- Dark Angels: **CAPTAIN IN GRAVIS ARMOUR**: offered item 'Relic Power Fist' has no profile
-- Deathwatch: **CAPTAIN IN GRAVIS ARMOUR**: offered item 'Relic Power Fist' has no profile
-- Space Wolves: **CAPTAIN IN GRAVIS ARMOUR**: offered item 'Relic Power Fist' has no profile
-- Imperial Fists: **CAPTAIN IN GRAVIS ARMOUR**: offered item 'Relic Power Fist' has no profile
-- Iron Hands: **CAPTAIN IN GRAVIS ARMOUR**: offered item 'Relic Power Fist' has no profile
-- Raven Guard: **CAPTAIN IN GRAVIS ARMOUR**: offered item 'Relic Power Fist' has no profile
-- Salamanders: **CAPTAIN IN GRAVIS ARMOUR**: offered item 'Relic Power Fist' has no profile
-- Ultramarines: **CAPTAIN IN GRAVIS ARMOUR**: offered item 'Relic Power Fist' has no profile
-- White Scars: **CAPTAIN IN GRAVIS ARMOUR**: offered item 'Relic Power Fist' has no profile
+- Space Marines: **STERNGUARD VETERAN SQUAD**: would drop the option heavy bolter of sternguard veteran sergeant, which the datasheet still mentions
+- Black Templars: **STERNGUARD VETERAN SQUAD**: would drop the option heavy bolter of sternguard veteran sergeant, which the datasheet still mentions
+- Blood Angels: **STERNGUARD VETERAN SQUAD**: would drop the option heavy bolter of sternguard veteran sergeant, which the datasheet still mentions
+- Dark Angels: **STERNGUARD VETERAN SQUAD**: would drop the option heavy bolter of sternguard veteran sergeant, which the datasheet still mentions
+- Deathwatch: **STERNGUARD VETERAN SQUAD**: would drop the option heavy bolter of sternguard veteran sergeant, which the datasheet still mentions
+- Space Wolves: **STERNGUARD VETERAN SQUAD**: would drop the option heavy bolter of sternguard veteran sergeant, which the datasheet still mentions
+- Imperial Fists: **STERNGUARD VETERAN SQUAD**: would drop the option heavy bolter of sternguard veteran sergeant, which the datasheet still mentions
+- Iron Hands: **STERNGUARD VETERAN SQUAD**: would drop the option heavy bolter of sternguard veteran sergeant, which the datasheet still mentions
+- Raven Guard: **STERNGUARD VETERAN SQUAD**: would drop the option heavy bolter of sternguard veteran sergeant, which the datasheet still mentions
+- Salamanders: **STERNGUARD VETERAN SQUAD**: would drop the option heavy bolter of sternguard veteran sergeant, which the datasheet still mentions
+- Ultramarines: **STERNGUARD VETERAN SQUAD**: would drop the option heavy bolter of sternguard veteran sergeant, which the datasheet still mentions
+- White Scars: **STERNGUARD VETERAN SQUAD**: would drop the option heavy bolter of sternguard veteran sergeant, which the datasheet still mentions
 
-## replaced item 'Artificer Firearm' is not in the starting wargear [] (12)
+## would drop the option plasma exterminators of inceptor sergeant, which the datasheet still mentions (12)
 
-- Space Marines: **STERNGUARD VETERAN SQUAD**: replaced item 'Artificer Firearm' is not in the starting wargear []
-- Black Templars: **STERNGUARD VETERAN SQUAD**: replaced item 'Artificer Firearm' is not in the starting wargear []
-- Blood Angels: **STERNGUARD VETERAN SQUAD**: replaced item 'Artificer Firearm' is not in the starting wargear []
-- Dark Angels: **STERNGUARD VETERAN SQUAD**: replaced item 'Artificer Firearm' is not in the starting wargear []
-- Deathwatch: **STERNGUARD VETERAN SQUAD**: replaced item 'Artificer Firearm' is not in the starting wargear []
-- Space Wolves: **STERNGUARD VETERAN SQUAD**: replaced item 'Artificer Firearm' is not in the starting wargear []
-- Imperial Fists: **STERNGUARD VETERAN SQUAD**: replaced item 'Artificer Firearm' is not in the starting wargear []
-- Iron Hands: **STERNGUARD VETERAN SQUAD**: replaced item 'Artificer Firearm' is not in the starting wargear []
-- Raven Guard: **STERNGUARD VETERAN SQUAD**: replaced item 'Artificer Firearm' is not in the starting wargear []
-- Salamanders: **STERNGUARD VETERAN SQUAD**: replaced item 'Artificer Firearm' is not in the starting wargear []
-- Ultramarines: **STERNGUARD VETERAN SQUAD**: replaced item 'Artificer Firearm' is not in the starting wargear []
-- White Scars: **STERNGUARD VETERAN SQUAD**: replaced item 'Artificer Firearm' is not in the starting wargear []
-
-## offered item 'Crushing Feet' has no profile (12)
-
-- Space Marines: **DREADNOUGHT**: offered item 'Crushing Feet' has no profile
-- Black Templars: **DREADNOUGHT**: offered item 'Crushing Feet' has no profile
-- Blood Angels: **DREADNOUGHT**: offered item 'Crushing Feet' has no profile
-- Dark Angels: **DREADNOUGHT**: offered item 'Crushing Feet' has no profile
-- Deathwatch: **DREADNOUGHT**: offered item 'Crushing Feet' has no profile
-- Space Wolves: **DREADNOUGHT**: offered item 'Crushing Feet' has no profile
-- Imperial Fists: **DREADNOUGHT**: offered item 'Crushing Feet' has no profile
-- Iron Hands: **DREADNOUGHT**: offered item 'Crushing Feet' has no profile
-- Raven Guard: **DREADNOUGHT**: offered item 'Crushing Feet' has no profile
-- Salamanders: **DREADNOUGHT**: offered item 'Crushing Feet' has no profile
-- Ultramarines: **DREADNOUGHT**: offered item 'Crushing Feet' has no profile
-- White Scars: **DREADNOUGHT**: offered item 'Crushing Feet' has no profile
+- Space Marines: **INCEPTOR SQUAD**: would drop the option plasma exterminators of inceptor sergeant, which the datasheet still mentions
+- Black Templars: **INCEPTOR SQUAD**: would drop the option plasma exterminators of inceptor sergeant, which the datasheet still mentions
+- Blood Angels: **INCEPTOR SQUAD**: would drop the option plasma exterminators of inceptor sergeant, which the datasheet still mentions
+- Dark Angels: **INCEPTOR SQUAD**: would drop the option plasma exterminators of inceptor sergeant, which the datasheet still mentions
+- Deathwatch: **INCEPTOR SQUAD**: would drop the option plasma exterminators of inceptor sergeant, which the datasheet still mentions
+- Space Wolves: **INCEPTOR SQUAD**: would drop the option plasma exterminators of inceptor sergeant, which the datasheet still mentions
+- Imperial Fists: **INCEPTOR SQUAD**: would drop the option plasma exterminators of inceptor sergeant, which the datasheet still mentions
+- Iron Hands: **INCEPTOR SQUAD**: would drop the option plasma exterminators of inceptor sergeant, which the datasheet still mentions
+- Raven Guard: **INCEPTOR SQUAD**: would drop the option plasma exterminators of inceptor sergeant, which the datasheet still mentions
+- Salamanders: **INCEPTOR SQUAD**: would drop the option plasma exterminators of inceptor sergeant, which the datasheet still mentions
+- Ultramarines: **INCEPTOR SQUAD**: would drop the option plasma exterminators of inceptor sergeant, which the datasheet still mentions
+- White Scars: **INCEPTOR SQUAD**: would drop the option plasma exterminators of inceptor sergeant, which the datasheet still mentions
 
 ## replaced item 'Superkrak Rocket Launcher' is not in the starting wargear ['bolt pistol', 'castellan launcher', 'superfrag rocket launcher', 'ceramite fists'] (12)
 
@@ -106,51 +70,6 @@ These units have option sentences the parser cannot turn into options safely. Re
 - Ultramarines: **DESOLATION SQUAD**: replaced item 'Superkrak Rocket Launcher' is not in the starting wargear ['bolt pistol', 'castellan launcher', 'superfrag rocket launcher', 'ceramite fists']
 - White Scars: **DESOLATION SQUAD**: replaced item 'Superkrak Rocket Launcher' is not in the starting wargear ['bolt pistol', 'castellan launcher', 'superfrag rocket launcher', 'ceramite fists']
 
-## replaced item '2 Lascannons' is not in the starting wargear ['Predator autocannon', 'armoured tracks'] (12)
-
-- Space Marines: **PREDATOR DESTRUCTOR**: replaced item '2 Lascannons' is not in the starting wargear ['Predator autocannon', 'armoured tracks']
-- Black Templars: **PREDATOR DESTRUCTOR**: replaced item '2 Lascannons' is not in the starting wargear ['Predator autocannon', 'armoured tracks']
-- Blood Angels: **PREDATOR DESTRUCTOR**: replaced item '2 Lascannons' is not in the starting wargear ['Predator autocannon', 'armoured tracks']
-- Dark Angels: **PREDATOR DESTRUCTOR**: replaced item '2 Lascannons' is not in the starting wargear ['Predator autocannon', 'armoured tracks']
-- Deathwatch: **PREDATOR DESTRUCTOR**: replaced item '2 Lascannons' is not in the starting wargear ['Predator autocannon', 'armoured tracks']
-- Space Wolves: **PREDATOR DESTRUCTOR**: replaced item '2 Lascannons' is not in the starting wargear ['Predator autocannon', 'armoured tracks']
-- Imperial Fists: **PREDATOR DESTRUCTOR**: replaced item '2 Lascannons' is not in the starting wargear ['Predator autocannon', 'armoured tracks']
-- Iron Hands: **PREDATOR DESTRUCTOR**: replaced item '2 Lascannons' is not in the starting wargear ['Predator autocannon', 'armoured tracks']
-- Raven Guard: **PREDATOR DESTRUCTOR**: replaced item '2 Lascannons' is not in the starting wargear ['Predator autocannon', 'armoured tracks']
-- Salamanders: **PREDATOR DESTRUCTOR**: replaced item '2 Lascannons' is not in the starting wargear ['Predator autocannon', 'armoured tracks']
-- Ultramarines: **PREDATOR DESTRUCTOR**: replaced item '2 Lascannons' is not in the starting wargear ['Predator autocannon', 'armoured tracks']
-- White Scars: **PREDATOR DESTRUCTOR**: replaced item '2 Lascannons' is not in the starting wargear ['Predator autocannon', 'armoured tracks']
-
-## replaced item '2 Lascannons' is not in the starting wargear ['Predator twin lascannon', 'armoured tracks'] (12)
-
-- Space Marines: **PREDATOR ANNIHILATOR**: replaced item '2 Lascannons' is not in the starting wargear ['Predator twin lascannon', 'armoured tracks']
-- Black Templars: **PREDATOR ANNIHILATOR**: replaced item '2 Lascannons' is not in the starting wargear ['Predator twin lascannon', 'armoured tracks']
-- Blood Angels: **PREDATOR ANNIHILATOR**: replaced item '2 Lascannons' is not in the starting wargear ['Predator twin lascannon', 'armoured tracks']
-- Dark Angels: **PREDATOR ANNIHILATOR**: replaced item '2 Lascannons' is not in the starting wargear ['Predator twin lascannon', 'armoured tracks']
-- Deathwatch: **PREDATOR ANNIHILATOR**: replaced item '2 Lascannons' is not in the starting wargear ['Predator twin lascannon', 'armoured tracks']
-- Space Wolves: **PREDATOR ANNIHILATOR**: replaced item '2 Lascannons' is not in the starting wargear ['Predator twin lascannon', 'armoured tracks']
-- Imperial Fists: **PREDATOR ANNIHILATOR**: replaced item '2 Lascannons' is not in the starting wargear ['Predator twin lascannon', 'armoured tracks']
-- Iron Hands: **PREDATOR ANNIHILATOR**: replaced item '2 Lascannons' is not in the starting wargear ['Predator twin lascannon', 'armoured tracks']
-- Raven Guard: **PREDATOR ANNIHILATOR**: replaced item '2 Lascannons' is not in the starting wargear ['Predator twin lascannon', 'armoured tracks']
-- Salamanders: **PREDATOR ANNIHILATOR**: replaced item '2 Lascannons' is not in the starting wargear ['Predator twin lascannon', 'armoured tracks']
-- Ultramarines: **PREDATOR ANNIHILATOR**: replaced item '2 Lascannons' is not in the starting wargear ['Predator twin lascannon', 'armoured tracks']
-- White Scars: **PREDATOR ANNIHILATOR**: replaced item '2 Lascannons' is not in the starting wargear ['Predator twin lascannon', 'armoured tracks']
-
-## replaced item '2 Astareus Las-rippers' is not in the starting wargear ['ironhail heavy stubber', 'storm bolter', 'twin heavy bolter', 'twin macro-accelerator cannon', 'armoured hull'] (12)
-
-- Space Marines: **ASTRAEUS**: replaced item '2 Astareus Las-rippers' is not in the starting wargear ['ironhail heavy stubber', 'storm bolter', 'twin heavy bolter', 'twin macro-accelerator cannon', 'armoured hull']
-- Black Templars: **ASTRAEUS**: replaced item '2 Astareus Las-rippers' is not in the starting wargear ['ironhail heavy stubber', 'storm bolter', 'twin heavy bolter', 'twin macro-accelerator cannon', 'armoured hull']
-- Blood Angels: **ASTRAEUS**: replaced item '2 Astareus Las-rippers' is not in the starting wargear ['ironhail heavy stubber', 'storm bolter', 'twin heavy bolter', 'twin macro-accelerator cannon', 'armoured hull']
-- Dark Angels: **ASTRAEUS**: replaced item '2 Astareus Las-rippers' is not in the starting wargear ['ironhail heavy stubber', 'storm bolter', 'twin heavy bolter', 'twin macro-accelerator cannon', 'armoured hull']
-- Deathwatch: **ASTRAEUS**: replaced item '2 Astareus Las-rippers' is not in the starting wargear ['ironhail heavy stubber', 'storm bolter', 'twin heavy bolter', 'twin macro-accelerator cannon', 'armoured hull']
-- Space Wolves: **ASTRAEUS**: replaced item '2 Astareus Las-rippers' is not in the starting wargear ['ironhail heavy stubber', 'storm bolter', 'twin heavy bolter', 'twin macro-accelerator cannon', 'armoured hull']
-- Imperial Fists: **ASTRAEUS**: replaced item '2 Astareus Las-rippers' is not in the starting wargear ['ironhail heavy stubber', 'storm bolter', 'twin heavy bolter', 'twin macro-accelerator cannon', 'armoured hull']
-- Iron Hands: **ASTRAEUS**: replaced item '2 Astareus Las-rippers' is not in the starting wargear ['ironhail heavy stubber', 'storm bolter', 'twin heavy bolter', 'twin macro-accelerator cannon', 'armoured hull']
-- Raven Guard: **ASTRAEUS**: replaced item '2 Astareus Las-rippers' is not in the starting wargear ['ironhail heavy stubber', 'storm bolter', 'twin heavy bolter', 'twin macro-accelerator cannon', 'armoured hull']
-- Salamanders: **ASTRAEUS**: replaced item '2 Astareus Las-rippers' is not in the starting wargear ['ironhail heavy stubber', 'storm bolter', 'twin heavy bolter', 'twin macro-accelerator cannon', 'armoured hull']
-- Ultramarines: **ASTRAEUS**: replaced item '2 Astareus Las-rippers' is not in the starting wargear ['ironhail heavy stubber', 'storm bolter', 'twin heavy bolter', 'twin macro-accelerator cannon', 'armoured hull']
-- White Scars: **ASTRAEUS**: replaced item '2 Astareus Las-rippers' is not in the starting wargear ['ironhail heavy stubber', 'storm bolter', 'twin heavy bolter', 'twin macro-accelerator cannon', 'armoured hull']
-
 ## replaced item 'Thunderhawk cluster bombs' is not in the starting wargear ['2 lascannons', 'thunderhawk heavy cannon', '4 twin heavy bolters', 'armoured hull', 'hellstrike missile battery'] (12)
 
 - Space Marines: **THUNDERHAWK GUNSHIP**: replaced item 'Thunderhawk cluster bombs' is not in the starting wargear ['2 lascannons', 'thunderhawk heavy cannon', '4 twin heavy bolters', 'armoured hull', 'hellstrike missile battery']
@@ -166,165 +85,85 @@ These units have option sentences the parser cannot turn into options safely. Re
 - Ultramarines: **THUNDERHAWK GUNSHIP**: replaced item 'Thunderhawk cluster bombs' is not in the starting wargear ['2 lascannons', 'thunderhawk heavy cannon', '4 twin heavy bolters', 'armoured hull', 'hellstrike missile battery']
 - White Scars: **THUNDERHAWK GUNSHIP**: replaced item 'Thunderhawk cluster bombs' is not in the starting wargear ['2 lascannons', 'thunderhawk heavy cannon', '4 twin heavy bolters', 'armoured hull', 'hellstrike missile battery']
 
-## would drop the option plasma pistol of assault intercessors with jump pack (12)
+## would drop the option plasma pistol of assault intercessors with jump pack, which the datasheet still mentions (12)
 
-- Space Marines: **ASSAULT INTERCESSORS WITH JUMP PACKS**: would drop the option plasma pistol of assault intercessors with jump pack
-- Black Templars: **ASSAULT INTERCESSORS WITH JUMP PACKS**: would drop the option plasma pistol of assault intercessors with jump pack
-- Blood Angels: **ASSAULT INTERCESSORS WITH JUMP PACKS**: would drop the option plasma pistol of assault intercessors with jump pack
-- Dark Angels: **ASSAULT INTERCESSORS WITH JUMP PACKS**: would drop the option plasma pistol of assault intercessors with jump pack
-- Deathwatch: **ASSAULT INTERCESSORS WITH JUMP PACKS**: would drop the option plasma pistol of assault intercessors with jump pack
-- Space Wolves: **ASSAULT INTERCESSORS WITH JUMP PACKS**: would drop the option plasma pistol of assault intercessors with jump pack
-- Imperial Fists: **ASSAULT INTERCESSORS WITH JUMP PACKS**: would drop the option plasma pistol of assault intercessors with jump pack
-- Iron Hands: **ASSAULT INTERCESSORS WITH JUMP PACKS**: would drop the option plasma pistol of assault intercessors with jump pack
-- Raven Guard: **ASSAULT INTERCESSORS WITH JUMP PACKS**: would drop the option plasma pistol of assault intercessors with jump pack
-- Salamanders: **ASSAULT INTERCESSORS WITH JUMP PACKS**: would drop the option plasma pistol of assault intercessors with jump pack
-- Ultramarines: **ASSAULT INTERCESSORS WITH JUMP PACKS**: would drop the option plasma pistol of assault intercessors with jump pack
-- White Scars: **ASSAULT INTERCESSORS WITH JUMP PACKS**: would drop the option plasma pistol of assault intercessors with jump pack
+- Space Marines: **ASSAULT INTERCESSORS WITH JUMP PACKS**: would drop the option plasma pistol of assault intercessors with jump pack, which the datasheet still mentions
+- Black Templars: **ASSAULT INTERCESSORS WITH JUMP PACKS**: would drop the option plasma pistol of assault intercessors with jump pack, which the datasheet still mentions
+- Blood Angels: **ASSAULT INTERCESSORS WITH JUMP PACKS**: would drop the option plasma pistol of assault intercessors with jump pack, which the datasheet still mentions
+- Dark Angels: **ASSAULT INTERCESSORS WITH JUMP PACKS**: would drop the option plasma pistol of assault intercessors with jump pack, which the datasheet still mentions
+- Deathwatch: **ASSAULT INTERCESSORS WITH JUMP PACKS**: would drop the option plasma pistol of assault intercessors with jump pack, which the datasheet still mentions
+- Space Wolves: **ASSAULT INTERCESSORS WITH JUMP PACKS**: would drop the option plasma pistol of assault intercessors with jump pack, which the datasheet still mentions
+- Imperial Fists: **ASSAULT INTERCESSORS WITH JUMP PACKS**: would drop the option plasma pistol of assault intercessors with jump pack, which the datasheet still mentions
+- Iron Hands: **ASSAULT INTERCESSORS WITH JUMP PACKS**: would drop the option plasma pistol of assault intercessors with jump pack, which the datasheet still mentions
+- Raven Guard: **ASSAULT INTERCESSORS WITH JUMP PACKS**: would drop the option plasma pistol of assault intercessors with jump pack, which the datasheet still mentions
+- Salamanders: **ASSAULT INTERCESSORS WITH JUMP PACKS**: would drop the option plasma pistol of assault intercessors with jump pack, which the datasheet still mentions
+- Ultramarines: **ASSAULT INTERCESSORS WITH JUMP PACKS**: would drop the option plasma pistol of assault intercessors with jump pack, which the datasheet still mentions
+- White Scars: **ASSAULT INTERCESSORS WITH JUMP PACKS**: would drop the option plasma pistol of assault intercessors with jump pack, which the datasheet still mentions
 
-## replaced item 'Twin Lightning Claws' is not in the starting wargear [] (11)
+## would drop the option storm shield of assault terminator sergeant, which the datasheet still mentions (11)
 
-- Space Marines: **TERMINATOR ASSAULT SQUAD**: replaced item 'Twin Lightning Claws' is not in the starting wargear []
-- Black Templars: **TERMINATOR ASSAULT SQUAD**: replaced item 'Twin Lightning Claws' is not in the starting wargear []
-- Blood Angels: **TERMINATOR ASSAULT SQUAD**: replaced item 'Twin Lightning Claws' is not in the starting wargear []
-- Dark Angels: **TERMINATOR ASSAULT SQUAD**: replaced item 'Twin Lightning Claws' is not in the starting wargear []
-- Space Wolves: **TERMINATOR ASSAULT SQUAD**: replaced item 'Twin Lightning Claws' is not in the starting wargear []
-- Imperial Fists: **TERMINATOR ASSAULT SQUAD**: replaced item 'Twin Lightning Claws' is not in the starting wargear []
-- Iron Hands: **TERMINATOR ASSAULT SQUAD**: replaced item 'Twin Lightning Claws' is not in the starting wargear []
-- Raven Guard: **TERMINATOR ASSAULT SQUAD**: replaced item 'Twin Lightning Claws' is not in the starting wargear []
-- Salamanders: **TERMINATOR ASSAULT SQUAD**: replaced item 'Twin Lightning Claws' is not in the starting wargear []
-- Ultramarines: **TERMINATOR ASSAULT SQUAD**: replaced item 'Twin Lightning Claws' is not in the starting wargear []
-- White Scars: **TERMINATOR ASSAULT SQUAD**: replaced item 'Twin Lightning Claws' is not in the starting wargear []
+- Space Marines: **TERMINATOR ASSAULT SQUAD**: would drop the option storm shield of assault terminator sergeant, which the datasheet still mentions
+- Black Templars: **TERMINATOR ASSAULT SQUAD**: would drop the option storm shield of assault terminator sergeant, which the datasheet still mentions
+- Blood Angels: **TERMINATOR ASSAULT SQUAD**: would drop the option storm shield of assault terminator sergeant, which the datasheet still mentions
+- Dark Angels: **TERMINATOR ASSAULT SQUAD**: would drop the option storm shield of assault terminator sergeant, which the datasheet still mentions
+- Space Wolves: **TERMINATOR ASSAULT SQUAD**: would drop the option storm shield of assault terminator sergeant, which the datasheet still mentions
+- Imperial Fists: **TERMINATOR ASSAULT SQUAD**: would drop the option storm shield of assault terminator sergeant, which the datasheet still mentions
+- Iron Hands: **TERMINATOR ASSAULT SQUAD**: would drop the option storm shield of assault terminator sergeant, which the datasheet still mentions
+- Raven Guard: **TERMINATOR ASSAULT SQUAD**: would drop the option storm shield of assault terminator sergeant, which the datasheet still mentions
+- Salamanders: **TERMINATOR ASSAULT SQUAD**: would drop the option storm shield of assault terminator sergeant, which the datasheet still mentions
+- Ultramarines: **TERMINATOR ASSAULT SQUAD**: would drop the option storm shield of assault terminator sergeant, which the datasheet still mentions
+- White Scars: **TERMINATOR ASSAULT SQUAD**: would drop the option storm shield of assault terminator sergeant, which the datasheet still mentions
 
-## replaced item 'Melta Rifle' is not in the starting wargear [] (11)
+## would drop the option electroscourge a model cannot be equipped with more than one electroscourge of defiler, which the datasheet still mentions (5)
 
-- Black Templars: **ERADICATOR SQUAD WITH MELTA RIFLES**: replaced item 'Melta Rifle' is not in the starting wargear []
-- Blood Angels: **ERADICATOR SQUAD WITH MELTA RIFLES**: replaced item 'Melta Rifle' is not in the starting wargear []
-- Dark Angels: **ERADICATOR SQUAD WITH MELTA RIFLES**: replaced item 'Melta Rifle' is not in the starting wargear []
-- Deathwatch: **ERADICATOR SQUAD WITH MELTA RIFLES**: replaced item 'Melta Rifle' is not in the starting wargear []
-- Space Wolves: **ERADICATOR SQUAD WITH MELTA RIFLES**: replaced item 'Melta Rifle' is not in the starting wargear []
-- Imperial Fists: **ERADICATOR SQUAD WITH MELTA RIFLES**: replaced item 'Melta Rifle' is not in the starting wargear []
-- Iron Hands: **ERADICATOR SQUAD WITH MELTA RIFLES**: replaced item 'Melta Rifle' is not in the starting wargear []
-- Raven Guard: **ERADICATOR SQUAD WITH MELTA RIFLES**: replaced item 'Melta Rifle' is not in the starting wargear []
-- Salamanders: **ERADICATOR SQUAD WITH MELTA RIFLES**: replaced item 'Melta Rifle' is not in the starting wargear []
-- Ultramarines: **ERADICATOR SQUAD WITH MELTA RIFLES**: replaced item 'Melta Rifle' is not in the starting wargear []
-- White Scars: **ERADICATOR SQUAD WITH MELTA RIFLES**: replaced item 'Melta Rifle' is not in the starting wargear []
+- Chaos Space Marines: **DEFILER**: would drop the option electroscourge a model cannot be equipped with more than one electroscourge of defiler, which the datasheet still mentions
+- Death Guard: **DEFILER**: would drop the option electroscourge a model cannot be equipped with more than one electroscourge of defiler, which the datasheet still mentions
+- Emperor's Children: **DEFILER**: would drop the option electroscourge a model cannot be equipped with more than one electroscourge of defiler, which the datasheet still mentions
+- Thousand Sons: **DEFILER**: would drop the option electroscourge a model cannot be equipped with more than one electroscourge of defiler, which the datasheet still mentions
+- World Eaters: **DEFILER**: would drop the option electroscourge a model cannot be equipped with more than one electroscourge of defiler, which the datasheet still mentions
 
-## offered item 'gun drone' has no profile (9)
+## would drop the option havoc launcher of chaos rhino, which the datasheet still mentions (3)
 
-- Tau Empire: **COMMANDER IN ENFORCER BATTLESUIT**: offered item 'gun drone' has no profile
-- Tau Empire: **COMMANDER IN COLDSTAR BATTLESUIT**: offered item 'gun drone' has no profile
-- Tau Empire: **CADRE FIREBLADE**: offered item 'gun drone' has no profile
-- Tau Empire: **ETHEREAL**: offered item 'gun drone' has no profile
-- Tau Empire: **STRIKE TEAM**: offered item 'gun drone' has no profile
-- Tau Empire: **BREACHER TEAM**: offered item 'gun drone' has no profile
-- Tau Empire: **PATHFINDER TEAM**: offered item 'gun drone' has no profile
-- Tau Empire: **BROADSIDE BATTLESUITS**: offered item 'gun drone' has no profile
-- Tau Empire: **STEALTH BATTLESUITS**: offered item 'gun drone' has no profile
+- Death Guard: **CHAOS RHINO**: would drop the option havoc launcher of chaos rhino, which the datasheet still mentions
+- Thousand Sons: **CHAOS RHINO**: would drop the option havoc launcher of chaos rhino, which the datasheet still mentions
+- World Eaters: **CHAOS RHINO**: would drop the option havoc launcher of chaos rhino, which the datasheet still mentions
 
-## would drop the option infiltrator comms array of infiltrators (6)
+## would drop the option marker drone and shield drone of crisis shas vre, which the datasheet still mentions (3)
 
-- Space Marines: **INFILTRATOR SQUAD**: would drop the option infiltrator comms array of infiltrators
-- Black Templars: **INFILTRATOR SQUAD**: would drop the option infiltrator comms array of infiltrators
-- Blood Angels: **INFILTRATOR SQUAD**: would drop the option infiltrator comms array of infiltrators
-- Dark Angels: **INFILTRATOR SQUAD**: would drop the option infiltrator comms array of infiltrators
-- Deathwatch: **INFILTRATOR SQUAD**: would drop the option infiltrator comms array of infiltrators
-- Space Wolves: **INFILTRATOR SQUAD**: would drop the option infiltrator comms array of infiltrators
-
-## would drop the option reiver grav chute of reiver sergeant (6)
-
-- Space Marines: **REIVER SQUAD**: would drop the option reiver grav chute of reiver sergeant
-- Black Templars: **REIVER SQUAD**: would drop the option reiver grav chute of reiver sergeant
-- Blood Angels: **REIVER SQUAD**: would drop the option reiver grav chute of reiver sergeant
-- Dark Angels: **REIVER SQUAD**: would drop the option reiver grav chute of reiver sergeant
-- Deathwatch: **REIVER SQUAD**: would drop the option reiver grav chute of reiver sergeant
-- Space Wolves: **REIVER SQUAD**: would drop the option reiver grav chute of reiver sergeant
-
-## would drop the option havoc launcher of chaos rhino (3)
-
-- Death Guard: **CHAOS RHINO**: would drop the option havoc launcher of chaos rhino
-- Thousand Sons: **CHAOS RHINO**: would drop the option havoc launcher of chaos rhino
-- World Eaters: **CHAOS RHINO**: would drop the option havoc launcher of chaos rhino
-
-## offered item 'shield drone' has no profile (3)
-
-- Tau Empire: **CRISIS SUNFORGE BATTLESUITS**: offered item 'shield drone' has no profile
-- Tau Empire: **CRISIS FIREKNIFE BATTLESUITS**: offered item 'shield drone' has no profile
-- Tau Empire: **CRISIS STARSCYTHE BATTLESUITS**: offered item 'shield drone' has no profile
+- Tau Empire: **CRISIS SUNFORGE BATTLESUITS**: would drop the option marker drone and shield drone of crisis shas vre, which the datasheet still mentions
+- Tau Empire: **CRISIS FIREKNIFE BATTLESUITS**: would drop the option marker drone and shield drone of crisis shas vre, which the datasheet still mentions
+- Tau Empire: **CRISIS STARSCYTHE BATTLESUITS**: would drop the option marker drone and shield drone of crisis shas vre, which the datasheet still mentions
 
 ## cannot tell which model 'Missionary' is among ['Miraculist', 'Salvationist', 'Death Cult Assassin', 'Missionary with plasma gun', 'Missionary with flamer'] (2)
 
 - Adepta Sororitas: **SANCTIFIERS**: cannot tell which model 'Missionary' is among ['Miraculist', 'Salvationist', 'Death Cult Assassin', 'Missionary with plasma gun', 'Missionary with flamer']
 - Imperial Agents: **SANCTIFIERS**: cannot tell which model 'Missionary' is among ['Miraculist', 'Salvationist', 'Death Cult Assassin', 'Missionary with plasma gun', 'Missionary with flamer']
 
+## cannot tell which model 'Deathwatch Veteran' is among ['Kill Team Sergeant', 'Gravis Veteran', 'Deathwatch Veteran with stalker bolt rifle', 'Deathwatch Veteran with thunder hammer', 'Deathwatch Veteran with marksman bolt carbine'] (2)
+
+- Imperial Agents: **AQUILA KILL TEAM**: cannot tell which model 'Deathwatch Veteran' is among ['Kill Team Sergeant', 'Gravis Veteran', 'Deathwatch Veteran with stalker bolt rifle', 'Deathwatch Veteran with thunder hammer', 'Deathwatch Veteran with marksman bolt carbine']
+- Deathwatch: **DECIMUS KILL TEAM**: cannot tell which model 'Deathwatch Veteran' is among ['Kill Team Sergeant', 'Gravis Veteran', 'Deathwatch Veteran with stalker bolt rifle', 'Deathwatch Veteran with thunder hammer', 'Deathwatch Veteran with marksman bolt carbine']
+
 ## replaced item 'shuriken rifle' is not in the starting wargear ['shuriken pistol', 'power sword', 'close combat weapon'] (2)
 
 - Aeldari: **CORSAIR VOIDSCARRED**: replaced item 'shuriken rifle' is not in the starting wargear ['shuriken pistol', 'power sword', 'close combat weapon']
 - Drukhari: **CORSAIR VOIDSCARRED**: replaced item 'shuriken rifle' is not in the starting wargear ['shuriken pistol', 'power sword', 'close combat weapon']
 
-## offered item 'smoke launcher' has no profile (2)
-
-- Leagues of Votann: **KAPRICUS CARRIER**: offered item 'smoke launcher' has no profile
-- Leagues of Votann: **KAPRICUS DEFENDERS**: offered item 'smoke launcher' has no profile
-
-## offered item 'resurrection orb' has no profile (1)
-
-- Necrons: **OVERLORD**: offered item 'resurrection orb' has no profile
-
-## offered item 'fabricator claw array' has no profile (1)
-
-- Necrons: **CANOPTEK SPYDERS**: offered item 'fabricator claw array' has no profile
-
 ## would drop the priced option twin arachnus heavy blaze cannon (1)
 
 - Adeptus Custodes: **CALADIUS GRAV-TANK**: would drop the priced option twin arachnus heavy blaze cannon
 
-## replaced item 'Twin Lastrum Bolt Cannon' is not in the starting wargear ['arachnus blaze carronade', 'armoured hull'] (1)
+## would drop the option flamer and close combat weapon of cadian veteran guardsmen a, which the datasheet still mentions (1)
 
-- Adeptus Custodes: **CALADIUS ANNIHILATOR GRAV-TANK**: replaced item 'Twin Lastrum Bolt Cannon' is not in the starting wargear ['arachnus blaze carronade', 'armoured hull']
+- Astra Militarum: **CADIAN COMMAND SQUAD**: would drop the option flamer and close combat weapon of cadian veteran guardsmen a, which the datasheet still mentions
 
-## offered item 'chordclaw' has no profile (1)
+## would drop the option multiple rocket pod of valkyrie, which the datasheet still mentions (1)
 
-- Adeptus Mechanicus: **SICARIAN RUSTSTALKERS**: offered item 'chordclaw' has no profile
-
-## would drop the option galvanic rifle and enhanced data tether of skitarii rangers (1)
-
-- Adeptus Mechanicus: **SKITARII RANGERS**: would drop the option galvanic rifle and enhanced data tether of skitarii rangers
-
-## would drop the option radium carbine and enhanced data tether of skitarii vanguard (1)
-
-- Adeptus Mechanicus: **SKITARII VANGUARD**: would drop the option radium carbine and enhanced data tether of skitarii vanguard
-
-## cannot tell which model 'Cadian Veteran Guardsman' is among ['Cadian Commander', 'Cadian Veteran Guardsmen [A]', 'Cadian Veteran Guardsmen [B]', 'Cadian Veteran Guardsmen [C]', 'Cadian Veteran Guardsmen [D]'] (1)
-
-- Astra Militarum: **CADIAN COMMAND SQUAD**: cannot tell which model 'Cadian Veteran Guardsman' is among ['Cadian Commander', 'Cadian Veteran Guardsmen [A]', 'Cadian Veteran Guardsmen [B]', 'Cadian Veteran Guardsmen [C]', 'Cadian Veteran Guardsmen [D]']
-
-## offered item 'vox-caster' has no profile (1)
-
-- Astra Militarum: **CADIAN SHOCK TROOPS**: offered item 'vox-caster' has no profile
-
-## offered item 'Death Korps medi-pack' has no profile (1)
-
-- Astra Militarum: **DEATH KORPS OF KRIEG**: offered item 'Death Korps medi-pack' has no profile
-
-## would drop the option 2 additional heavy stubbers of rogal dorn battle tank (1)
-
-- Astra Militarum: **ROGAL DORN BATTLE TANK**: would drop the option 2 additional heavy stubbers of rogal dorn battle tank
-
-## replaced item 'multi-laser' is not in the starting wargear ['hellstrike missiles', 'armoured hull', 'militarum multi-laser'] (1)
-
-- Astra Militarum: **VALKYRIE**: replaced item 'multi-laser' is not in the starting wargear ['hellstrike missiles', 'armoured hull', 'militarum multi-laser']
-
-## would drop the option hot shot lasgun and regimental standard of tempestus scions (1)
-
-- Astra Militarum: **MILITARUM TEMPESTUS COMMAND SQUAD**: would drop the option hot shot lasgun and regimental standard of tempestus scions
+- Astra Militarum: **VALKYRIE**: would drop the option multiple rocket pod of valkyrie, which the datasheet still mentions
 
 ## cannot tell which model 'Heavy Weapons Gunners' is among ['Fire Coordinator', 'Heavy Weapons Teams'] (1)
 
 - Astra Militarum: **KRIEG HEAVY WEAPONS SQUAD**: cannot tell which model 'Heavy Weapons Gunners' is among ['Fire Coordinator', 'Heavy Weapons Teams']
-
-## would drop the option 2 additional heavy stubbers of rogal dorn commander (1)
-
-- Astra Militarum: **ROGAL DORN COMMANDER**: would drop the option 2 additional heavy stubbers of rogal dorn commander
 
 ## cannot tell which model 'Veteran Guardsman' is among ['Catachan Commander', 'Veteran Guardsmen'] (1)
 
@@ -334,37 +173,13 @@ These units have option sentences the parser cannot turn into options safely. Re
 
 - Astra Militarum: **KRIEG COMMAND SQUAD**: cannot tell which model 'Veteran Guardsman' is among ['Lord Commissar', 'Veteran Guardsmen with Chainsword', 'Veteran Guardsmen with Servo-Scribes', 'Veteran Guardsmen with Master Vox', 'Veteran Guardsmen with Regimental Standard']
 
-## offered item 'Nemesis greatsword 1 Nemesis mace' has no profile (1)
+## would drop the option nemesis mace of grand master in nemesis dreadknight, which the datasheet still mentions (1)
 
-- Grey Knights: **GRAND MASTER IN NEMESIS DREADKNIGHT**: offered item 'Nemesis greatsword 1 Nemesis mace' has no profile
+- Grey Knights: **GRAND MASTER IN NEMESIS DREADKNIGHT**: would drop the option nemesis mace of grand master in nemesis dreadknight, which the datasheet still mentions
 
 ## cannot tell which model 'Navis Armsman' is among ['Navis Sergeant-at-Arms', 'Navis Armsmen with las-volley', 'Navis Armsmen with heavy shotgun', 'Navis Armsmen'] (1)
 
 - Imperial Agents: **IMPERIAL NAVY BREACHERS**: cannot tell which model 'Navis Armsman' is among ['Navis Sergeant-at-Arms', 'Navis Armsmen with las-volley', 'Navis Armsmen with heavy shotgun', 'Navis Armsmen']
-
-## would drop the option arbites combat shotgun and arbites medi kit of exaction vigilants (1)
-
-- Imperial Agents: **EXACTION SQUAD**: would drop the option arbites combat shotgun and arbites medi kit of exaction vigilants
-
-## offered item 'Fists' has no profile (1)
-
-- Imperial Agents: **DEATHWATCH KILL TEAM**: offered item 'Fists' has no profile
-
-## would drop the option simulacrum imperialis and boltgun of battle sisters (1)
-
-- Imperial Agents: **SISTERS OF BATTLE SQUAD**: would drop the option simulacrum imperialis and boltgun of battle sisters
-
-## would drop the option storm bolter and ancient s banner of grey knights terminators (1)
-
-- Imperial Agents: **GREY KNIGHTS TERMINATOR SQUAD**: would drop the option storm bolter and ancient s banner of grey knights terminators
-
-## cannot tell which model 'Deathwatch Veteran' is among ['Kill Team Sergeant', 'Gravis Veteran', 'Deathwatch Veteran with stalker bolt rifle', 'Deathwatch Veteran with thunder hammer', 'Deathwatch Veteran with marksman bolt carbine'] (1)
-
-- Imperial Agents: **AQUILA KILL TEAM**: cannot tell which model 'Deathwatch Veteran' is among ['Kill Team Sergeant', 'Gravis Veteran', 'Deathwatch Veteran with stalker bolt rifle', 'Deathwatch Veteran with thunder hammer', 'Deathwatch Veteran with marksman bolt carbine']
-
-## would drop the option bellatus reaper chainsword and thundershock spear of knight destrier (1)
-
-- Imperial Knights: **KNIGHT DESTRIER**: would drop the option bellatus reaper chainsword and thundershock spear of knight destrier
 
 ## replaced item 'shuriken rifle' is not in the starting wargear ['shuriken pistol', 'close combat weapon', 'power sword'] (1)
 
@@ -374,49 +189,13 @@ These units have option sentences the parser cannot turn into options safely. Re
 
 - Aeldari: **DIRE AVENGERS**: cannot tell which model 'If this unit's Dire Avenger Exarch is' is among ['Dire Avenger Exarch', 'Dire Avengers']
 
-## replaced item 'Harlequin's blade' is not in the starting wargear ['shuriken pistol'] (1)
+## cannot tell which model 'If this unit contains 10 models, 1 Corsair Voidreaver' is among ['Voidreaver with Heavy weapon', 'Voidreaver with Shuriken rifle', 'Voidreaver with sword and pistol', 'Voidreaver with Blaster', 'Voidreaver with Shredder'] (1)
 
-- Aeldari: **TROUPE**: replaced item 'Harlequin's blade' is not in the starting wargear ['shuriken pistol']
+- Drukhari: **CORSAIR VOIDREAVERS**: cannot tell which model 'If this unit contains 10 models, 1 Corsair Voidreaver' is among ['Voidreaver with Heavy weapon', 'Voidreaver with Shuriken rifle', 'Voidreaver with sword and pistol', 'Voidreaver with Blaster', 'Voidreaver with Shredder']
 
-## offered item 'demilklaives' has no profile (1)
+## would drop the option power fist of terminator champion, which the datasheet still mentions (1)
 
-- Aeldari: **YNNARI INCUBI**: offered item 'demilklaives' has no profile
-
-## offered item 'missile launcher' has no profile (1)
-
-- Aeldari: **WAR WALKERS**: offered item 'missile launcher' has no profile
-
-## would drop the option splinter rifle and stimm needler of kabalite agents (1)
-
-- Drukhari: **HAND OF THE ARCHON**: would drop the option splinter rifle and stimm needler of kabalite agents
-
-## cannot tell which model 'Corsair Voidreavers in this' is among ['Voidreaver with Heavy weapon', 'Voidreaver with Shuriken rifle', 'Voidreaver with sword and pistol', 'Voidreaver with Blaster', 'Voidreaver with Shredder'] (1)
-
-- Drukhari: **CORSAIR VOIDREAVERS**: cannot tell which model 'Corsair Voidreavers in this' is among ['Voidreaver with Heavy weapon', 'Voidreaver with Shuriken rifle', 'Voidreaver with sword and pistol', 'Voidreaver with Blaster', 'Voidreaver with Shredder']
-
-## replaced item 'shuriken cannon' is not in the starting wargear ['star bolas', 'close combat weapon'] (1)
-
-- Drukhari: **SKYWEAVERS**: replaced item 'shuriken cannon' is not in the starting wargear ['star bolas', 'close combat weapon']
-
-## cannot tell which model '' is among ['Player with Harlequin’s Blade', 'Player with Harlequin’s Special Weapon', 'Player with Fusion Pistol', 'Player with Neuro Disruptor', 'Lead Player'] (1)
-
-- Drukhari: **TROUPE**: cannot tell which model '' is among ['Player with Harlequin’s Blade', 'Player with Harlequin’s Special Weapon', 'Player with Fusion Pistol', 'Player with Neuro Disruptor', 'Lead Player']
-
-## replaced item 'Troupe Master's blade' is not in the starting wargear ['harlequin’s special weapon', 'shuriken pistol'] (1)
-
-- Drukhari: **TROUPE MASTER**: replaced item 'Troupe Master's blade' is not in the starting wargear ['harlequin’s special weapon', 'shuriken pistol']
-
-## would drop the option khorne of soul grinder (1)
-
-- Chaos Daemons: **SOUL GRINDER**: would drop the option khorne of soul grinder
-
-## would drop the option power fist of terminator champion (1)
-
-- Chaos Space Marines: **CHAOS TERMINATOR SQUAD**: would drop the option power fist of terminator champion
-
-## would drop the option plasma pistol and astartes chainsword of raptors (1)
-
-- Chaos Space Marines: **RAPTORS**: would drop the option plasma pistol and astartes chainsword of raptors
+- Chaos Space Marines: **CHAOS TERMINATOR SQUAD**: would drop the option power fist of terminator champion, which the datasheet still mentions
 
 ## cannot tell which model 'Fellgor Beastman' is among ['Fellgor Champion', 'Fellgor Beastmen'] (1)
 
@@ -426,61 +205,33 @@ These units have option sentences the parser cannot turn into options safely. Re
 
 - Chaos Space Marines: **NEMESIS CLAW**: would change the limit of heavy bolter of legionaries
 
-## replaced item 'sonic blaster' is not in the starting wargear [] (1)
+## cannot tell which model '' is among ['Khorne Berzerker Champion', 'Khorne Berzerker', 'Berzerker w/ chainblade and plasma pistol', 'Berzerker w/ eviscerator and plasma pistol', 'Berzerker w/ eviscerator and bolt pistol'] (1)
 
-- Chaos Space Marines: **NOISE MARINES**: replaced item 'sonic blaster' is not in the starting wargear []
-
-## replaced item 'bolt pistol' is not in the starting wargear ['chainblade'] (1)
-
-- Chaos Space Marines: **KHORNE BERZERKERS**: replaced item 'bolt pistol' is not in the starting wargear ['chainblade']
+- Chaos Space Marines: **KHORNE BERZERKERS**: cannot tell which model '' is among ['Khorne Berzerker Champion', 'Khorne Berzerker', 'Berzerker w/ chainblade and plasma pistol', 'Berzerker w/ eviscerator and plasma pistol', 'Berzerker w/ eviscerator and bolt pistol']
 
 ## cannot tell which model 'Rubric Marine' is among ['Aspiring Sorcerer', 'Rubric Marine w/ inferno boltgun', 'Rubric Marine w/ warpflamer', 'Rubric Marine w/ soulreaper cannon'] (1)
 
 - Chaos Space Marines: **RUBRIC MARINES**: cannot tell which model 'Rubric Marine' is among ['Aspiring Sorcerer', 'Rubric Marine w/ inferno boltgun', 'Rubric Marine w/ warpflamer', 'Rubric Marine w/ soulreaper cannon']
 
-## replaced item 'boltgun' is not in the starting wargear ['plague knives'] (1)
+## cannot tell which model 'Plague Marine' is among ['Plague Champion', 'Plague Marine w/ bubotic weapons', 'Plague Marine w/ heavy plague weapon', 'Plague Marine w/ blight launcher', 'Plague Marine w/ boltgun'] (1)
 
-- Chaos Space Marines: **PLAGUE MARINES**: replaced item 'boltgun' is not in the starting wargear ['plague knives']
+- Chaos Space Marines: **PLAGUE MARINES**: cannot tell which model 'Plague Marine' is among ['Plague Champion', 'Plague Marine w/ bubotic weapons', 'Plague Marine w/ heavy plague weapon', 'Plague Marine w/ blight launcher', 'Plague Marine w/ boltgun']
 
-## would drop the option boltgun and icon of despair of plague marines (1)
+## would drop the option combi weapon of blightlord champion, which the datasheet still mentions (1)
 
-- Death Guard: **PLAGUE MARINES**: would drop the option boltgun and icon of despair of plague marines
-
-## would drop the option combi weapon of blightlord champion (1)
-
-- Death Guard: **BLIGHTLORD TERMINATORS**: would drop the option combi weapon of blightlord champion
-
-## would drop the option additional plaguespurt gauntlet of deathshroud champion (1)
-
-- Death Guard: **DEATHSHROUD TERMINATORS**: would drop the option additional plaguespurt gauntlet of deathshroud champion
-
-## offered item 'mangler' has no profile (1)
-
-- World Eaters: **JAKHALS**: offered item 'mangler' has no profile
+- Death Guard: **BLIGHTLORD TERMINATORS**: would drop the option combi weapon of blightlord champion, which the datasheet still mentions
 
 ## would change the limit of grenade launcher of atalan jackals (1)
 
 - Genestealer Cults: **ATALAN JACKALS**: would change the limit of grenade launcher of atalan jackals
 
-## replaced item 'monstrous bonesword and lash whip' is not in the starting wargear ['tyrant talons'] (1)
+## replaced item 'weavefield crest' is not in the starting wargear ['EtaCarn plasma gun', 'Exoarmour grenade launcher', 'Concussion gauntlet'] (1)
 
-- Genestealer Cults: **WINGED HIVE TYRANT**: replaced item 'monstrous bonesword and lash whip' is not in the starting wargear ['tyrant talons']
+- Leagues of Votann: **EINHYR HEARTHGUARD**: replaced item 'weavefield crest' is not in the starting wargear ['EtaCarn plasma gun', 'Exoarmour grenade launcher', 'Concussion gauntlet']
 
-## replaced item 'breacher ordnance' is not in the starting wargear ['plasma picks', 'autoch-pattern bolt pistols, breacher ordnance'] (1)
+## would drop the option concussion gauntlet of ironkin steeljacks, which the datasheet still mentions (1)
 
-- Leagues of Votann: **CTHONIAN EARTHSHAKERS**: replaced item 'breacher ordnance' is not in the starting wargear ['plasma picks', 'autoch-pattern bolt pistols, breacher ordnance']
-
-## offered item 'teleport crest' has no profile (1)
-
-- Leagues of Votann: **EINHYR CHAMPION**: offered item 'teleport crest' has no profile
-
-## offered item 'multiwave comms array' has no profile (1)
-
-- Leagues of Votann: **HERNKYN PIONEERS**: offered item 'multiwave comms array' has no profile
-
-## cannot tell which model 'models in this' is among ['Steeljack Theyn', 'Ironkin Steeljacks'] (1)
-
-- Leagues of Votann: **IRONKIN STEELJACKS WITH MELEE WEAPONS**: cannot tell which model 'models in this' is among ['Steeljack Theyn', 'Ironkin Steeljacks']
+- Leagues of Votann: **IRONKIN STEELJACKS WITH MELEE WEAPONS**: would drop the option concussion gauntlet of ironkin steeljacks, which the datasheet still mentions
 
 ## replaced item 'Autoch-pattem combi-bolter' is not in the starting wargear ['autoch-pattern combi-bolter', 'forgewrought plasma axe', 'rampart crest'] (1)
 
@@ -494,73 +245,41 @@ These units have option sentences the parser cannot turn into options safely. Re
 
 - Orks: **BEAST SNAGGA BOYZ**: cannot tell which model 'Beast Snagga Boy' is among ['Beast Snagga Nob', 'Beast Snagga Boyz']
 
-## would drop the option grot oiler of big mek in mega armour (1)
-
-- Orks: **BIG MEK IN MEGA ARMOUR**: would drop the option grot oiler of big mek in mega armour
-
 ## cannot tell which model 'Boy' is among ['Boss Nob', 'Boyz'] (1)
 
 - Orks: **BOYZ**: cannot tell which model 'Boy' is among ['Boss Nob', 'Boyz']
 
-## would drop the option distraction grot of boss nob (1)
+## cannot tell which model 'model in this unit' is among ['Pathfinder Shas’ui', 'Pathfinders'] (1)
 
-- Orks: **KOMMANDOS**: would drop the option distraction grot of boss nob
+- Tau Empire: **PATHFINDER TEAM**: cannot tell which model 'model in this unit' is among ['Pathfinder Shas’ui', 'Pathfinders']
 
-## replaced item 'Kustom Krumpa and Kustom Shoota' is not in the starting wargear [] (1)
+## cannot tell which model '* No' is among ['Broadside Shas’vre', 'Broadside Shas’ui'] (1)
 
-- Orks: **NOBZ**: replaced item 'Kustom Krumpa and Kustom Shoota' is not in the starting wargear []
+- Tau Empire: **BROADSIDE BATTLESUITS**: cannot tell which model '* No' is among ['Broadside Shas’vre', 'Broadside Shas’ui']
 
-## replaced item 'Kannon' is not in the starting wargear ['huge tusks', 'kannon – shell'] (1)
+## would drop the option fusion blaster of stealth shas vre, which the datasheet still mentions (1)
 
-- Orks: **GARGANTUAN SQUIGGOTH**: replaced item 'Kannon' is not in the starting wargear ['huge tusks', 'kannon – shell']
+- Tau Empire: **STEALTH BATTLESUITS**: would drop the option fusion blaster of stealth shas vre, which the datasheet still mentions
 
-## cannot tell which model 'Breaka Boy' is among ['Boss Nob', 'Breaka Boyz'] (1)
+## would drop the option deathspitter of tyranid prime, which the datasheet still mentions (1)
 
-- Orks: **BREAKA BOYZ**: cannot tell which model 'Breaka Boy' is among ['Boss Nob', 'Breaka Boyz']
-
-## cannot tell which model '' is among ['Warbuggies w/ Rivet Kannon', 'Warbuggies w/ Mek Speshul'] (1)
-
-- Orks: **WARBUGGIES**: cannot tell which model '' is among ['Warbuggies w/ Rivet Kannon', 'Warbuggies w/ Mek Speshul']
-
-## offered item 'prey-hook' has no profile (1)
-
-- Tau Empire: **KROOT WAR SHAPER**: offered item 'prey-hook' has no profile
+- Tyranids: **TYRANID WARRIORS WITH RANGED BIO-WEAPONS**: would drop the option deathspitter of tyranid prime, which the datasheet still mentions
 
 ## replaced item 'ranged weapon' is not in the starting wargear ['fleshborer', 'chitinous claws & teeth'] (1)
 
 - Tyranids: **TERMAGANTS**: replaced item 'ranged weapon' is not in the starting wargear ['fleshborer', 'chitinous claws & teeth']
 
-## would drop the option crushing claws rending claws of tyrant guard (1)
+## would change the limit of watcher in the dark of deathwing terminators (1)
 
-- Tyranids: **TYRANT GUARD**: would drop the option crushing claws rending claws of tyrant guard
-
-## offered item 'Bolt Rifle Fire' has no profile (1)
-
-- Blood Angels: **DEATH COMPANY MARINES**: offered item 'Bolt Rifle Fire' has no profile
-
-## would drop the option sanguinary banner of sanguinary guard (1)
-
-- Blood Angels: **SANGUINARY GUARD**: would drop the option sanguinary banner of sanguinary guard
-
-## replaced item 'Power Fist' is not in the starting wargear ['storm bolter'] (1)
-
-- Dark Angels: **DEATHWING TERMINATOR SQUAD**: replaced item 'Power Fist' is not in the starting wargear ['storm bolter']
-
-## cannot tell which model '' is among ['Ravenwing Champion', 'Ravenwing Apothecary', 'Ravenwing Ancient'] (1)
-
-- Dark Angels: **RAVENWING COMMAND SQUAD**: cannot tell which model '' is among ['Ravenwing Champion', 'Ravenwing Apothecary', 'Ravenwing Ancient']
-
-## replaced item 'Boltgun' is not in the starting wargear ['boltgun and power weapon'] (1)
-
-- Deathwatch: **DEATHWATCH VETERANS**: replaced item 'Boltgun' is not in the starting wargear ['boltgun and power weapon']
+- Dark Angels: **DEATHWING TERMINATOR SQUAD**: would change the limit of watcher in the dark of deathwing terminators
 
 ## cannot tell which model 'Kill Team Intercessor' is among ['Kill Team Sergeant with Jump Pack', 'Kill Team Intercessors with Jump Packs', 'Kill Team Heavy Intercessors with Jump Packs'] (1)
 
 - Deathwatch: **TALONSTRIKE KILL TEAM**: cannot tell which model 'Kill Team Intercessor' is among ['Kill Team Sergeant with Jump Pack', 'Kill Team Intercessors with Jump Packs', 'Kill Team Heavy Intercessors with Jump Packs']
 
-## replaced item 'bolt rifle' is not in the starting wargear ['bolt pistol', 'deathwatch bolt rifle', 'close combat weapon'] (1)
+## cannot tell which model 'model' is among ['Kill Team Sergeant', 'Kill Team Intercessors', ' Kill Team Intercessors with plasma incinerators', 'Kill Team Intercessors with heavy bolt pistols', 'Kill Team Intercessors with pyreblasters'] (1)
 
-- Deathwatch: **FORTIS KILL TEAM**: replaced item 'bolt rifle' is not in the starting wargear ['bolt pistol', 'deathwatch bolt rifle', 'close combat weapon']
+- Deathwatch: **FORTIS KILL TEAM**: cannot tell which model 'model' is among ['Kill Team Sergeant', 'Kill Team Intercessors', ' Kill Team Intercessors with plasma incinerators', 'Kill Team Intercessors with heavy bolt pistols', 'Kill Team Intercessors with pyreblasters']
 
 ## cannot tell which model 'model' is among ['Kill Team Heavy Intercessors', 'Kill Team Heavy Intercessors with power fists', 'Kill Team Heavy Intercessors with melta rifles'] (1)
 
@@ -570,18 +289,35 @@ These units have option sentences the parser cannot turn into options safely. Re
 
 - Deathwatch: **SPECTRUS KILL TEAM**: cannot tell which model 'model' is among ['Kill Team Infiltrators', 'Kill Team Infiltrators with bolt sniper rifles', 'Kill Team Infiltrators with Deathwatch occulus bolt carbines', 'Kill Team Infiltrators with combat knives']
 
-## offered item 'Grenade Launcher' has no profile (1)
-
-- Deathwatch: **DECIMUS KILL TEAM**: offered item 'Grenade Launcher' has no profile
-
-## replaced item 'Fenrisian Great Axe' is not in the starting wargear ['storm bolter', 'great wolf claw', 'fenrisian great axe – sweep'] (1)
-
-- Space Wolves: **WULFEN DREADNOUGHT**: replaced item 'Fenrisian Great Axe' is not in the starting wargear ['storm bolter', 'great wolf claw', 'fenrisian great axe – sweep']
-
-## offered item 'Fenrisian Great Axe' has no profile (1)
-
-- Space Wolves: **VENERABLE DREADNOUGHT**: offered item 'Fenrisian Great Axe' has no profile
-
 ## cannot tell which model 'model' is among ['Wolf Scout Pack Leader', 'Wolf Scouts', 'Hunting Wolves'] (1)
 
 - Space Wolves: **WOLF SCOUTS**: cannot tell which model 'model' is among ['Wolf Scout Pack Leader', 'Wolf Scouts', 'Hunting Wolves']
+
+## Options removed because the datasheet no longer offers them (26)
+
+- Space Marines: **INFILTRATOR SQUAD**: infiltrators: infiltrator comms array
+- Space Marines: **REIVER SQUAD**: reiver sergeant: reiver grav chute
+- Imperial Agents: **DEATHWATCH KILL TEAM**: deathwatch veterans: boltgun and astartes shield
+- Imperial Agents: **DEATHWATCH KILL TEAM**: deathwatch veterans: power weapon and astartes shield
+- Chaos Daemons: **SOUL GRINDER**: soul grinder: khorne
+- Chaos Daemons: **SOUL GRINDER**: soul grinder: tzeentch
+- Chaos Daemons: **SOUL GRINDER**: soul grinder: nurgle
+- Chaos Daemons: **SOUL GRINDER**: soul grinder: slaanesh
+- Orks: **BIG MEK IN MEGA ARMOUR**: big mek in mega armour: grot oiler
+- Orks: **KOMMANDOS**: boss nob: distraction grot
+- Orks: **NOBZ**: boss nob: ammo runt
+- Black Templars: **INFILTRATOR SQUAD**: infiltrators: infiltrator comms array
+- Black Templars: **REIVER SQUAD**: reiver sergeant: reiver grav chute
+- Blood Angels: **SANGUINARY GUARD**: sanguinary guard: sanguinary banner
+- Blood Angels: **INFILTRATOR SQUAD**: infiltrators: infiltrator comms array
+- Blood Angels: **REIVER SQUAD**: reiver sergeant: reiver grav chute
+- Dark Angels: **INFILTRATOR SQUAD**: infiltrators: infiltrator comms array
+- Dark Angels: **REIVER SQUAD**: reiver sergeant: reiver grav chute
+- Deathwatch: **DEATHWATCH VETERANS**: deathwatch veterans: boltgun astartes shield and close combat weapon
+- Deathwatch: **DEATHWATCH VETERANS**: deathwatch veterans: power weapon and astartes shield
+- Deathwatch: **INFILTRATOR SQUAD**: infiltrators: infiltrator comms array
+- Deathwatch: **REIVER SQUAD**: reiver sergeant: reiver grav chute
+- Space Wolves: **VENERABLE DREADNOUGHT**: venerable dreadnought: fenrisian greataxe blizzard shield and storm bolter
+- Space Wolves: **VENERABLE DREADNOUGHT**: venerable dreadnought: fenrisian greataxe blizzard shield and heavy flamer
+- Space Wolves: **INFILTRATOR SQUAD**: infiltrators: infiltrator comms array
+- Space Wolves: **REIVER SQUAD**: reiver sergeant: reiver grav chute

@@ -87,8 +87,12 @@ def process(u, texts, wlib):
             bulk = [i for i in cand if (mcs[i].get('Limit') or {}).get('Max', 1) > 1]
             if len(bulk) == 1: cand = bulk
         if len(cand) != 1 and len(mcs) > 1:
-            # the sentence names a role (Sergeant, Champion...) shared by several variants: refuse
-            return None, f"cannot tell which model '{p['subj']}' is among {[m['ModelName'] for m in mcs][:5]}"
+            # the sentence names a role shared by several variants ("a Missionary"): when it says which item is replaced, the rows that carry that item are the ones it talks about
+            if p['repl']:
+                rn_ = norm(p['repl']); has = [i for i, m in enumerate(mcs) if any(norm(x) and (norm(x) in rn_ or rn_ in norm(x)) for x in ((m.get('Wargear') or [{}])[0]).get('InitalWargear', []))]
+                if len(has) > 1 and (not cand or set(has) >= set(cand) or set(cand) >= set(has)):
+                    p['rows'] = has; cand = [has[0]]
+            if len(cand) != 1: return None, f"cannot tell which model '{p['subj']}' is among {[m['ModelName'] for m in mcs][:5]}"
         ci = cand[0] if cand else 0
         generic = not subj or subj in ('model', 'unit', 'it')
         init = ((mcs[ci].get('Wargear') or [{}])[0]).get('InitalWargear', [])
@@ -97,6 +101,10 @@ def process(u, texts, wlib):
             rn = norm(p['repl'])
             for x in init:
                 if norm(x) and (norm(x) in rn): reps.append(x)
+            if not reps:   # another shape of the same item: "Plasma Pistol" and "Plasma Pistol - Standard", or one item that lists two ("harlequin's blade, flip belt")
+                words = lambda s_: set(re.sub(r'\band\b', ' ', s_).split())
+                near = [x for x in init if norm(x) and (words(rn) <= words(norm(x)) or (words(norm(x)) <= words(rn) and len(words(norm(x))) >= 2))]
+                if len(near) == 1: reps = near
             if not reps:
                 near = [x for x in init if norm(x) and difflib.SequenceMatcher(None, norm(x), rn).ratio() >= 0.95]
                 if len(near) == 1: reps = near
@@ -104,7 +112,7 @@ def process(u, texts, wlib):
         names = []
         if p.get('upto'):
             nmax, one = p['upto']; r1 = wlib.resolve(u, one)
-            if not r1: return None, f"offered item '{one}' has no profile"
+            if not r1: r1 = re.sub(r'^(?:1|one|a|an)\s+', '', one).strip()
             names = [r1] + [f'{n_} {r1}s' for n_ in range(2, nmax + 1)]
             o = {'Options': names}; comp_opts[ci].append(o); continue   # up to N of a kind: stays with the one model type
         for it in p['items']:
@@ -113,8 +121,15 @@ def process(u, texts, wlib):
             if whole: names.append(whole); continue
             parts = [x.strip() for x in it.split(' and ')]; resolved = []
             for part in parts:
+                part = re.split(r'\.\s', re.sub(r'\s*[(\[][^)\]]*[)\]]', '', part))[0].strip(' .')   # notes in brackets and the sentences after the item are not part of its name
                 nm = wlib.resolve(u, part)
-                if not nm: return None, f"offered item '{part}' has no profile"
+                if not nm:   # a stray word at the end ("Bolt Rifle Fire"): the longest leading words that name a weapon of the unit
+                    ws = re.sub(r'^(?:1|one|a|an)\s+', '', part).split()
+                    nm = next((x for x in (wlib.resolve(u, ' '.join(ws[:n_])) for n_ in range(len(ws) - 1, 1, -1)) if x), None)
+                if not nm:
+                    nm = re.sub(r'^(?:1|one|a|an)\s+', '', part); nm = re.split(r'\.\s', re.sub(r'\s*[(\[][^)\]]*[)\]]', '', nm))[0].strip(' .')   # notes in brackets and the sentences after the item are not part of its name
+                    if re.search(r'[,;]|\bor\b|\bcan(?:not)?\b|\bmodel\b', nm): return None, f"offered item '{part}' is not a single piece of wargear"
+                if not nm: nm = part   # an item without a profile of its own (a drone, a banner, a crest): kept as plain wargear
                 resolved.append(part if re.match(r'^[2-9]\s', part) and not wlib.resolve_def(u, part) else nm)
             names.append(' and '.join(resolved) if len(resolved) > 1 else resolved[0])
         o = {}
@@ -156,7 +171,7 @@ class Lib:
                 u['Weapons'].append(tgt)
             tgt['Weapons'].append(json.loads(json.dumps(w))); return w['Name']
         return None
-rep = []; tot = collections.Counter()
+rep = []; removed = []; tot = collections.Counter()
 for name, fids in F.items():
     if a.only and a.only != name: continue
     path = os.path.join(a.dir, name + '.json')
@@ -180,7 +195,7 @@ for name, fids in F.items():
         if not [t for t in texts if parse_sentence(t) != 'skip']: tot['no options printed'] += 1; continue
         before = json.dumps([m.get('Wargear') for m in u['UnitComposition']['ModelCompositions']], sort_keys=True)
         snap = json.loads(json.dumps(u))
-        res, why = process(u, texts, lib)
+        stale_now = []; res, why = process(u, texts, lib)
         if res is not None:   # never lose a priced option: a definition with a cost must still be offered after the rebuild
             def reach(unit, optsets):
                 out = set()
@@ -203,10 +218,19 @@ for name, fids in F.items():
                 old_m = optmap(snap['UnitComposition']['ModelCompositions'], [((m.get('Wargear') or [{}])[0]).get('Options', []) for m in snap['UnitComposition']['ModelCompositions']])
                 new_m = optmap(u['UnitComposition']['ModelCompositions'], [res[ci] for ci in range(len(res))])
                 dropped = [x for x in old_m if x not in new_m]; loosened = [x for x in old_m if x in new_m and old_m[x] != new_m[x] and (old_m[x][0] or old_m[x][1])]
-                if dropped: res, why = None, f'would drop the option {dropped[0][1]} of {dropped[0][0]}'
-                elif loosened: res, why = None, f'would change the limit of {loosened[0][1]} of {loosened[0][0]}'
+                # an old option that only changes shape is not lost: "galvanic rifle and omnispex" is still offered when both parts are. One the datasheet no longer offers (the 10th edition's 2 lascannons of a Predator, now starting wargear) is a leftover and goes
+                offered = {}
+                for (mn_, it_) in new_m: offered.setdefault(mn_, set()).add(it_); offered[mn_] |= {k(p_) for p_ in it_.split(' and ')}
+                init_ = {k(m_['ModelName']): {k(x) for x in ((m_.get('Wargear') or [{}])[0]).get('InitalWargear', [])} for m_ in u['UnitComposition']['ModelCompositions']}
+                stale = [(mn_, it_) for (mn_, it_) in dropped if not all(p_ in offered.get(mn_, set()) or p_ in init_.get(mn_, set()) or any(p_ in i_ or i_ in p_ for i_ in init_.get(mn_, set())) for p_ in [k(x) for x in it_.split(' and ') if x.strip()])]
+                alltxt = k(' '.join(re.sub(r'<[^>]+>', ' ', fix(t_)) for t_ in texts))
+                unsafe = [(mn_, it_) for mn_, it_ in stale if all(k(p_) in alltxt for p_ in it_.split(' and ') if p_.strip())]   # the datasheet still names it: the reader missed something, so the unit is left for a human
+                if unsafe: res, why = None, f'would drop the option {unsafe[0][1]} of {unsafe[0][0]}, which the datasheet still mentions'
+                elif stale: stale_now[:] = stale
+                if res is not None and loosened: res, why = None, f'would change the limit of {loosened[0][1]} of {loosened[0][0]}'
         if res is None:
             u.clear(); u.update(snap); tot['left untouched'] += 1; rep.append((name, u['Name'], why)); continue
+        if stale_now: removed.extend((name, u['Name'], f'{mn_}: {it_}') for mn_, it_ in stale_now); tot['stale options removed'] += len(stale_now)
         for ci, m in enumerate(u['UnitComposition']['ModelCompositions']):
             if not m.get('Wargear'): m['Wargear'] = [{'InitalWargear': [], 'Options': []}]
             keep = [o for o in m['Wargear'][0].get('Options', []) if set(o) - {'Max', 'PerXModels', 'Replaces', 'Options'}]   # e.g. RequiredDettachment: not on the datasheet, kept
@@ -224,5 +248,7 @@ if a.report:
         for cat, rows in sorted(by.items(), key=lambda x: -len(x[1])):
             f.write(f'\n## {cat} ({len(rows)})\n\n')
             for n, un, w in rows: f.write(f'- {n}: **{un}**: {w}\n')
+        f.write(f'\n## Options removed because the datasheet no longer offers them ({len(removed)})\n\n')
+        for n, un, w in removed: f.write(f'- {n}: **{un}**: {w}\n')
 else:
     for n, un, w in rep[:25]: print('  left:', n, '|', un, '|', w[:150])

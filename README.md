@@ -72,7 +72,15 @@ bash tools/deploy.sh ../projectWar 11.3   # copy data_new/ into a checkout's dat
 
 Last step, `python -I -X utf8 tools/wh_authority.py <data dir> [--write]`: Wahapedia (11th edition) is the authority for what it publishes, so stat lines, ability names and ability texts are forced to its values (BSData still lags behind the 10th edition and can agree with stale data). Dry run unless `--write`.
 
-Wargear options: `python -I -X utf8 tools/wh_options.py <data dir> [--write] [--report FILE]` rebuilds the options of each unit from the datasheet's option sentences (Wahapedia `Datasheets_options.csv`). A unit is left untouched, and listed in the report, when a sentence cannot be understood, when the model a sentence talks about is ambiguous, or when the rebuild would lose a priced option. The current list is in `informes/equipo-pendiente.md`.
+Wargear options: `python -I -X utf8 tools/wh_options.py <data dir> [--write] [--report FILE]` rebuilds the options of each unit from the datasheet's option sentences (Wahapedia `Datasheets_options.csv`). A unit is left untouched, and listed in the report, when a sentence cannot be understood, when the model a sentence talks about is ambiguous, or when the rebuild would lose a priced option. The current list is in `wargear-options-unread.md`.
+
+Weapons and starting wargear, run in this order before `wh_options.py`, each with `<data dir> [--write] [--report FILE]`:
+
+1. `tools/wh_weapon_names.py`: renames a weapon that Wahapedia calls something else (typos, "Twin ..." variants), moves a weapon that is melee on one side and ranged on the other, and adds the weapons a unit is missing.
+2. `tools/wh_weapons.py`: range, attacks, skill, strength, AP, damage and keywords of every weapon straight from Wahapedia's `Datasheets_wargear.csv`.
+3. `tools/wh_loadout.py`: starting wargear of every model from the datasheet's loadout text ("Every Boy is equipped with: ...").
+
+After `wh_options.py`, run `tools/restore_bound_options.py <data dir> <original data dir> --write` to put back the options that only exist inside one detachment.
 
 Both scripts accept a faction name to run just one, for example `bash tools/all.sh necrons` (report name) and `bash tools/apply_all.sh Necrons`. After `apply_all.sh`, the self-check should show almost only `OK`; a few `UPDATE` / `REVIEW` rows are normal.
 
