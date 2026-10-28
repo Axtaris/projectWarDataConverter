@@ -86,6 +86,7 @@ def process(u, texts, wlib):
             # the sentence names a role (Sergeant, Champion...) shared by several variants: refuse
             return None, f"cannot tell which model '{p['subj']}' is among {[m['ModelName'] for m in mcs][:5]}"
         ci = cand[0] if cand else 0
+        generic = not subj or subj in ('model', 'unit', 'it')
         init = ((mcs[ci].get('Wargear') or [{}])[0]).get('InitalWargear', [])
         reps = []
         if p['repl']:
@@ -98,7 +99,7 @@ def process(u, texts, wlib):
             nmax, one = p['upto']; r1 = wlib.resolve(u, one)
             if not r1: return None, f"offered item '{one}' has no profile"
             names = [r1] + [f'{n_} {r1}s' for n_ in range(2, nmax + 1)]
-            o = {'Options': names}; comp_opts[ci].append(o); continue
+            o = {'Options': names}; comp_opts[ci].append(o); continue   # up to N of a kind: stays with the one model type
         for it in p['items']:
             # resolve against the unit's weapons / definitions; a combo "a and b" resolves part by part
             whole = wlib.resolve_def(u, it)
@@ -115,6 +116,9 @@ def process(u, texts, wlib):
         if reps: o['Replaces'] = reps
         o['Options'] = names
         comp_opts[ci].append(o)
+        if generic and p['any'] and reps and len(mcs) > 1:   # every other model type that carries the replaced items gets the same option
+            for cj, mj in enumerate(mcs):
+                if cj != ci and all(x in ((mj.get('Wargear') or [{}])[0]).get('InitalWargear', []) for x in reps): comp_opts[cj].append(dict(o))
     return comp_opts, None
 class Lib:
     def __init__(self, units): self.units = units; self.by = collections.defaultdict(list)
@@ -181,6 +185,10 @@ for name, fids in F.items():
             was = reach(snap, [((m.get('Wargear') or [{}])[0]).get('Options', []) for m in snap['UnitComposition']['ModelCompositions']]); now = reach(u, [res[ci] for ci in range(len(res))])
             lost = [d['Key'] for d in u['UnitComposition'].get('WargearDefinitions', []) if d.get('Cost') and k(d['Key']) in was and k(d['Key']) not in now]
             if lost: res, why = None, f'would drop the priced option {lost[0]}'
+            if res is not None and not a.units:   # a rebuild must not lose an option that is offered today (split combos, rewritten names...): such units are listed to be reviewed by hand, or rebuilt on purpose with --units
+                oset = lambda unit, sets: {k(x) for ci_ in range(len(sets)) for o_ in sets[ci_] if not set(o_) - {'Max', 'PerXModels', 'Replaces', 'Options'} for x in o_.get('Options', [])}
+                dropped = oset(snap, [((m.get('Wargear') or [{}])[0]).get('Options', []) for m in snap['UnitComposition']['ModelCompositions']]) - oset(u, [res[ci] for ci in range(len(res))])
+                if dropped: res, why = None, f'would drop the option {sorted(dropped)[0]}'
         if res is None:
             u.clear(); u.update(snap); tot['left untouched'] += 1; rep.append((name, u['Name'], why)); continue
         for ci, m in enumerate(u['UnitComposition']['ModelCompositions']):
