@@ -6,7 +6,7 @@
   MaxPoints    cap in points, or MaxPointsBySize {"1000": 500, "2000": 1000, "3000": 1500} (Incursion, Strike Force, Onslaught)
   NoWarlord    none of the allied models can be the Warlord
 Every entry is only written when the detachment's own rule text says it (the NEEDLE must be found in it), so a change in the data is noticed.
-Not described yet: Devoted of Ynnead (Aeldari): the Ynnari units live in the Aeldari file and would have to be hidden until the detachment is chosen.
+Gated: the units are in the faction's own file but can only be taken with this detachment (Ynnari). WarlordFrom: one of these units must be included and be the Warlord. FactionOnly: only the Faction keyword counts.
 usage: python -I -X utf8 tools/wh_allies.py <data dir> [--write]"""
 import glob, json, os, re, sys
 write = '--write' in sys.argv; d = [x for x in sys.argv[1:] if not x.startswith('--')][0]
@@ -20,6 +20,7 @@ RULES = {
     'BROOD BROTHERS AUXILIA': ('You can include Astra Militarum units in your army', {'Faction': 'Astra Militarum', 'Keyword': ['Astra Militarum'], 'ExcludeKeyword': ['Aircraft', 'Commissar', 'Epic Hero', 'Militarum Tempestus', 'Ogryn', 'Ratling', 'Ratlings', 'Tech-Priest Enginseer', 'Ministorum Priest'], 'MaxPointsBySize': BY_SIZE, 'NoWarlord': True}),
     'QUESTOR FORGEPACT': ('You can include Tech-Priest Dominus', {'Faction': 'Adeptus Mechanicus', 'UnitNames': ['TECH-PRIEST DOMINUS', 'TECH-PRIEST MANIPULUS', 'SKITARII MARSHAL', 'SKITARII RANGERS', 'SKITARII VANGUARD'], 'MaxPoints': 500}),
     'CHANGEHOST OF DECEIT': ('You can include Scintillating Legions units in your army', {'Faction': 'Chaos Daemons', 'Keyword': ['Tzeentch'], 'MaxPointsBySize': BY_SIZE, 'NoWarlord': True}),
+    'DEVOTED OF YNNEAD': ('You can include Ynnari units in your army', {'Faction': 'Aeldari', 'Keyword': ['Ynnari'], 'FactionOnly': True, 'Gated': True, 'WarlordFrom': ['YVRAINE', 'THE YNCARNE']}),
     'KHORNE DAEMONKIN': ('You can include the Blood Legions units in your army', {'Faction': 'Chaos Daemons', 'Keyword': ['Khorne'], 'MaxPointsBySize': BY_SIZE, 'NoWarlord': True}),
 }
 n = 0
