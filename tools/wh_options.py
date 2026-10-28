@@ -2,11 +2,12 @@
 BSData's option groups are inferred and differ from the datasheet in many units, so for every unit whose option sentences all parse cleanly,
 the options are rebuilt from the sentences. A unit is left untouched (and listed) when any sentence cannot be understood, when the model that
 a sentence talks about cannot be told apart, or when an offered weapon has no profile in the unit.
-usage: python -I -X utf8 tools/wh_options.py <data dir> [--write] [--only "Black Templars"] [--report FILE]"""
+usage: python -I -X utf8 tools/wh_options.py <data dir> [--write] [--only "Black Templars"] [--units "KASRKIN,TEMPESTUS SCIONS"] [--report FILE]
+On every run, notes that were read as starting wargear ("this unit can only contain 2 ... if it also contains 8 ...") are removed from the starting wargear."""
 import argparse, csv, html, json, os, re, sys, collections
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from wh_load import table, key as k
-ap = argparse.ArgumentParser(); ap.add_argument('dir'); ap.add_argument('--write', action='store_true'); ap.add_argument('--only'); ap.add_argument('--report'); a = ap.parse_args()
+ap = argparse.ArgumentParser(); ap.add_argument('dir'); ap.add_argument('--write', action='store_true'); ap.add_argument('--only'); ap.add_argument('--report'); ap.add_argument('--units', help='comma-separated unit names (upper case): rebuild only these'); a = ap.parse_args()
 CHAPTERS = {k(c) for c in ('Black Templars', 'Blood Angels', 'Dark Angels', 'Deathwatch', 'Space Wolves', 'Imperial Fists', 'Iron Hands', 'Raven Guard', 'Salamanders', 'Ultramarines', 'White Scars')}
 SM = 'SM,AoI,QI,TL'
 F = {'Necrons': 'NEC', 'Adeptus Custodes': 'AC,AoI,QI,TL', 'Space Marines': SM, 'Adepta Sororitas': 'AS', 'Adeptus Mechanicus': 'AdM', 'Astra Militarum': 'AM', 'Grey Knights': 'GK', 'Imperial Agents': 'AoI',
@@ -36,6 +37,8 @@ def parse_sentence(raw):
     items = [clean_item(m) for m in re.findall(r'<li[^>]*>(.*?)</li>', raw, re.S)]
     head = re.sub(r'<ul.*?</ul>', ' ', raw, flags=re.S); head = fix(re.sub(r'<[^>]+>', ' ', head)); head = re.sub(r'\s+', ' ', head).strip()
     if not head or head.lower().startswith('none'): return 'skip'
+    # footnotes under an option list: limits on repeating a weapon, "that model's X cannot be replaced", "a model cannot have both". They add no option, and used to make the whole unit be left untouched
+    if re.match(r"^\*?\s*(?:you cannot select (?:the same weapon|both)|(?:that model['’]s .+|this weapon) cannot be replaced|a model cannot be equipped with more than one)", head, re.I): return 'skip'
     m = RX.match(head)
     if not m: return None
     pre, rest = m.group('pre').strip(), m.group('rest').strip()
@@ -151,8 +154,15 @@ for name, fids in F.items():
     ds = {r['id']: r for r in DS if r['faction_id'] in ids}; cand = collections.defaultdict(list)
     for i, r in ds.items(): cand[k(r['name'])].append(i)
     rank = lambda i: ((k(name) not in KW[i], bool(KW[i] & CHAPTERS)) if k(name) in CHAPTERS else (bool(KW[i] & CHAPTERS),))
+    NOTE = lambda x: len(x) > 70 or x.endswith('.') or ' this ' in x or ' unit ' in x   # a sentence of the datasheet, not an item
+    for u in doc['Units']:
+        for m in u['UnitComposition']['ModelCompositions']:
+            for wg in m.get('Wargear') or []:
+                keep = [x for x in wg.get('InitalWargear', []) if not NOTE(x)]
+                if len(keep) != len(wg.get('InitalWargear', [])): wg['InitalWargear'] = keep; ch = True; tot['notes removed from starting wargear'] += 1
     lib = Lib(doc['Units']); lib.index()
     for u in doc['Units']:
+        if a.units and u['Name'] not in {x.strip() for x in a.units.split(',')}: continue
         l = cand.get(k(u['Name']))
         if not l: tot['no datasheet'] += 1; continue
         i = min(l, key=rank); texts = opts.get(i, [])
