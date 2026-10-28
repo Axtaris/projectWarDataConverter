@@ -23,7 +23,25 @@ def chars(txt):
 def sentence(s):
     """one sentence -> list of (list name, adjustment), or None when it is not a plain, unconditional effect"""
     s = n(s).rstrip('.')
+    m = re.match(r"^while the bearer is leading (?:a|the) unit, (.+)$", s, re.I)
+    if m:   # the bearer and the unit it leads
+        r = sentence(m.group(1).replace('that unit', 'this unit'))
+        return None if r is None else [x for k, ad in r for x in ((k, ad), (k, dict(ad, Scope='AttachedUnit')))]
     if re.search(NOT_COND, s, re.I): return None
+    m = re.match(r"^(this unit|this model)'s (?:\[([A-Za-z ]+)\] weapons|(melee|ranged) attacks) have \+(\d+) ((?:A|S|D|AP)(?:(?:, | and )(?:A|S|D|AP))*)$", s, re.I)
+    if m:
+        out = []
+        for c in re.split(r', | and ', m.group(5)):
+            adj = {'Value': m.group(4), 'Type': 'Add', 'Target': {'a': 'Attacks', 's': 'Strength', 'd': 'Damage', 'ap': 'AP'}[c.lower()], 'WeaponScope': 'Ranged' if m.group(2) else wscope(m.group(3))}
+            if m.group(2): adj['IncludedKeywords'] = [m.group(2).upper()]
+            if m.group(1).lower() == 'this unit': adj['Scope'] = 'Unit'
+            out.append(('WeaponStatAdjustments', adj))
+        return out
+    m = re.match(r"^(this unit|this model|the bearer) has (\d)\+ (Sv|InSv)$", s, re.I)
+    if m:
+        adj = {'Target': 'Save' if m.group(3).lower() == 'sv' else 'InvulSave', 'Value': m.group(2) + '+'}
+        if m.group(1).lower() == 'this unit': adj['Scope'] = 'Unit'
+        return [('StatAdjustments', adj)]
     m = re.match(r"^(?:add|improve) (\d+) to the (.+?) characteristics? of the bearer's (melee |ranged )?(?:weapons|weapon)$", s, re.I)
     if m:
         cs = chars(m.group(2))
@@ -56,11 +74,12 @@ def sentence(s):
     if m: return [('StatAdjustments', {'Target': 'InvulSave', 'Value': m.group(1) + '+'})]
     m = re.match(r"^the bearer has a save characteristic of (\d)\+$", s, re.I)
     if m: return [('StatAdjustments', {'Target': 'Save', 'Value': m.group(1) + '+'})]
-    m = re.match(r"^(this unit|the bearer|this model) has \+(\d+)(\")? (OC|M|T|W|Ld)$", s, re.I)
+    m = re.match(r"^(this unit|the bearer|this model) has \+(\d+)(\")? ((?:OC|M|T|W|Ld)(?:(?:, | and )(?:OC|M|T|W|Ld))*)$", s, re.I)
     if m:
-        adj = {'Target': STAT[m.group(4).lower()], 'Type': 'Add', 'Value': m.group(2) + ('"' if m.group(3) else '')}
-        if m.group(1).lower() == 'this unit': adj['Scope'] = 'Unit'
-        return [('StatAdjustments', adj)]
+        advs = [{'Target': STAT[c.lower()], 'Type': 'Add', 'Value': m.group(2) + ('"' if m.group(3) else '')} for c in re.split(r", | and ", m.group(4))]
+        for adj in advs:
+            if m.group(1).lower() == 'this unit': adj['Scope'] = 'Unit'
+        return [('StatAdjustments', adj) for adj in advs]
     m = re.match(r"^(?:models in (?:the bearer's unit|this unit)|the bearer's unit|this unit) (?:has|have) (?:the )?" + CORE + r"(?: abilit(?:y|ies))?$", s, re.I)
     if m: return [('DatasheetAdjustments', {'Target': 'CoreAbilities', 'Type': 'Add', 'Scope': 'Unit', 'Values': [m.group(1)]})]
     m = re.match(r"^(this unit|the bearer|this model) has (?:the )?" + CORE + r"(?: ability)?$", s, re.I)
@@ -72,6 +91,12 @@ def sentence(s):
 def extract(desc):
     body = n(re.sub(r'<[^>]+>', ' ', desc or ''))
     body = re.sub(r"^[^.]*?(?<![A-Za-z])(?:model|unit)s? only(?: \([^)]*\))?\.\s*", '', body, flags=re.I)   # "Adepta Sororitas model only."
+    m = re.match(r"^(this model|this unit|the bearer)(?: has)?:\s*(.+)$", body, re.I)   # "This model: Has +1 T. Has Feel No Pain 5+." and "This model has: Stealth Lone Operative."
+    if m:
+        subj, items = m.group(1), [x for x in re.split(r'(?<=[.!])\s+', m.group(2)) if x.strip()]
+        body = ' '.join(' '.join(f'{subj} has {c}.' for c in re.findall(CORE, i)) if re.fullmatch(r'(?:' + CORE + r'[ .]*)+', i.strip()) else f"{subj} has {re.sub(r'^has ', '', i.strip(), flags=re.I)}" for i in items)
+    m = re.match(r"^(this unit|this model)'s (melee|ranged) attacks:\s*(.+)$", body, re.I)
+    if m: body = ' '.join(f"{m.group(1)}'s {m.group(2)} attacks have {re.sub(r'^have ', '', i.strip(), flags=re.I)}" for i in re.split(r'(?<=[.!])\s+', m.group(3)) if i.strip())
     out = []
     for sen in [x for x in re.split(r'(?<=[.!])\s+', body) if x.strip()]:
         r = sentence(sen)
