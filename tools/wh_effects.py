@@ -38,6 +38,15 @@ def sentence(s):
     if m:
         kws = re.findall(r'\[([A-Za-z0-9+ \-]+)\]', m.group(3))
         return [('WeaponStatAdjustments', {'Value': k.upper(), 'Type': 'Add', 'Target': 'Keywords', 'WeaponScope': wscope(m.group(1) or m.group(2))}) for k in kws]
+    m = re.match(r"^(?:all )?(melee |ranged |psychic )?weapons equipped by (?:the bearer|models in (?:the bearer's unit|this unit)) (?:have|has) the ((?:\[[A-Za-z0-9+ \-]+\](?: and |, )?)+) abilit(?:y|ies)$", s, re.I)
+    if m:   # the bearer's own weapons and, when it leads a unit, the weapons of that unit (the unit it is attached to)
+        kws = re.findall(r'\[([A-Za-z0-9+ \-]+)\]', m.group(2)); psy = (m.group(1) or '').strip().lower() == 'psychic'; whole = "bearer's unit" in s or 'this unit' in s; out = []
+        for k in kws:
+            adj = {'Value': k.upper(), 'Type': 'Add', 'Target': 'Keywords', 'WeaponScope': 'Ranged' if psy else wscope(m.group(1))}
+            if psy: adj['IncludedKeywords'] = ['PSYCHIC']
+            out.append(('WeaponStatAdjustments', adj))
+            if whole: out.append(('WeaponStatAdjustments', dict(adj, Scope='AttachedUnit')))
+        return out
     m = re.match(r"^(this model|this unit|the bearer)'s (melee|ranged) (?:attacks|weapons) have (?:the )?\[([A-Za-z0-9+ \-]+)\](?: ability)?$", s, re.I)
     if m:
         adj = {'Value': m.group(3).upper(), 'Type': 'Add', 'Target': 'Keywords', 'WeaponScope': wscope(m.group(2))}
