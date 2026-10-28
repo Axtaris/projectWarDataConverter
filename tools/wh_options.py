@@ -4,7 +4,7 @@ the options are rebuilt from the sentences. A unit is left untouched (and listed
 a sentence talks about cannot be told apart, or when an offered weapon has no profile in the unit.
 usage: python -I -X utf8 tools/wh_options.py <data dir> [--write] [--only "Black Templars"] [--units "KASRKIN,TEMPESTUS SCIONS"] [--report FILE]
 On every run, notes that were read as starting wargear ("this unit can only contain 2 ... if it also contains 8 ...") are removed from the starting wargear."""
-import argparse, csv, html, json, os, re, sys, collections
+import argparse, csv, difflib, html, json, os, re, sys, collections
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from wh_load import table, key as k
 ap = argparse.ArgumentParser(); ap.add_argument('dir'); ap.add_argument('--write', action='store_true'); ap.add_argument('--only'); ap.add_argument('--report'); ap.add_argument('--units', help='comma-separated unit names (upper case): rebuild only these'); a = ap.parse_args()
@@ -21,30 +21,31 @@ for r in table('Datasheets_keywords'): KW[r['datasheet_id']].add(k(r['keyword'])
 opts = collections.defaultdict(list)
 for r in OPT: opts[r['datasheet_id']].append(r['description'] or '')
 NUM = {'one': 1, 'two': 2, 'three': 3, 'four': 4, 'five': 5, 'six': 6}
-def fix(s): return html.unescape(s).replace('’', "'").replace('‘', "'").replace(' ', ' ')
+def fix(s): return html.unescape(s).replace('’', "'").replace('‘', "'").replace(' ', ' ').replace(' & ', ' and ')
 def norm(s):
     s = k(fix(s)); s = re.sub(r'^(?:\d+|one|two|three|a|an|the)\s+', '', s); s = re.sub(r'\b(\w+?)s\b', r'\1', s) if False else s
+    s = re.sub(r'(?<=[a-z])ies\b', 'y', s)
     return re.sub(r'(?<=[a-z])s\b', '', s).strip()
 def clean_item(s):
     s = re.sub(r'<[^>]+>', ' ', s); s = fix(s); s = re.sub(r'[*]+', '', s); s = re.sub(r'\s+', ' ', s).strip(' .')
-    return s
+    return re.sub(r'^((?:\d+|one|two|three)\s+)?additional\s+', r'\1', s, flags=re.I)
 def split_item(s):  # "1 incinerator and 1 Ancient's banner" -> one combined option "incinerator and Ancient's banner"
     parts = [re.sub(r'^(?:1|one|a|an)\s+', '', p.strip()) for p in re.split(r'\s+and\s+(?=\d|one\b|two\b)', s)]   # a count above one stays ("2 heavy bolters"), like the rest of the data
     return ' and '.join(p for p in parts if p)
-RX = re.compile(r"^(?P<pre>.*?)(?:\bcan (?:each )?have (?:their|its|his|her) (?P<r1>.+?) (?:be )?replaced with|['’]s (?P<r2>.+?) can (?:each )?be replaced with|can (?:each )?(?:be )?equipped with|can (?:each )?(?:have|take)\b)\s*(?P<rest>.*)$", re.I | re.S)
+RX = re.compile(r"^(?P<pre>.*?)(?:\bcan (?:each )?have (?:their|its|his|her) (?P<r1>.+?) (?:be )?replaced with|['’]s? (?P<r2>.+?) can (?:each )?be replaced with|\bcan (?:each )?replace (?:their|its|his|her) (?P<r3>.+?) with|can (?:each )?(?:be )?equipped with|can (?:each )?(?:have|take)\b)\s*(?P<rest>.*)$", re.I | re.S)
 def parse_sentence(raw):
     """-> dict(per, max, subj, repl(str|None), items[list of option names]) or None"""
     items = [clean_item(m) for m in re.findall(r'<li[^>]*>(.*?)</li>', raw, re.S)]
     head = re.sub(r'<ul.*?</ul>', ' ', raw, flags=re.S); head = fix(re.sub(r'<[^>]+>', ' ', head)); head = re.sub(r'\s+', ' ', head).strip()
     if not head or head.lower().startswith('none'): return 'skip'
     # footnotes under an option list: limits on repeating a weapon, "that model's X cannot be replaced", "a model cannot have both". They add no option, and used to make the whole unit be left untouched
-    if re.match(r"^\*?\s*(?:you cannot select (?:the same weapon|both)|(?:that model['’]s .+|this weapon) cannot be replaced|a model cannot be equipped with more than one)", head, re.I): return 'skip'
+    if re.match(r"^\*?\s*(?:you cannot select (?:the same weapon|both)|(?:that model['’]s .+|this weapon) cannot be replaced|(?:a |the |that )?(?:\w+ )?model cannot be equipped with more than one|designer.s note)", head, re.I): return 'skip'
     m = RX.match(head)
     if not m: return None
     pre, rest = m.group('pre').strip(), m.group('rest').strip()
-    repl = (m.group('r1') or m.group('r2') or '').strip() or None
+    repl = (m.group('r1') or m.group('r2') or m.group('r3') or '').strip() or None
     per = mx = None; subj = pre
-    mm = re.match(r'for every (\d+) models? in (?:this|the) unit,?\s*(.*)$', subj, re.I)
+    mm = re.match(r'for every (\d+) models? in (?:this|the) unit[,:]?\s*(.*)$', subj, re.I)
     if mm: per = int(mm.group(1)); subj = mm.group(2)
     mm = re.match(r'(up to )?(\d+|one|two|three|four|five|any number of|all models in this unit|all)\s*(.*)$', subj, re.I)
     anyn = False
@@ -82,6 +83,9 @@ def process(u, texts, wlib):
         cand = [i for i, v in enumerate(sc) if v and v == best]
         if not subj or subj in ('model', 'unit', 'it', 'model'):
             cand = list(range(len(mcs))) if len(mcs) == 1 else [i for i, m in enumerate(mcs) if (m.get('Limit') or {}).get('Max', 1) > 1]
+        if len(cand) > 1 and (p['any'] or p['max'] or p['per']):   # "up to 2 Noise Marines": a quantity names the bulk model type, not a leader
+            bulk = [i for i in cand if (mcs[i].get('Limit') or {}).get('Max', 1) > 1]
+            if len(bulk) == 1: cand = bulk
         if len(cand) != 1 and len(mcs) > 1:
             # the sentence names a role (Sergeant, Champion...) shared by several variants: refuse
             return None, f"cannot tell which model '{p['subj']}' is among {[m['ModelName'] for m in mcs][:5]}"
@@ -93,6 +97,9 @@ def process(u, texts, wlib):
             rn = norm(p['repl'])
             for x in init:
                 if norm(x) and (norm(x) in rn): reps.append(x)
+            if not reps:
+                near = [x for x in init if norm(x) and difflib.SequenceMatcher(None, norm(x), rn).ratio() >= 0.95]
+                if len(near) == 1: reps = near
             if not reps: return None, f"replaced item '{p['repl']}' is not in the starting wargear {init}"
         names = []
         if p.get('upto'):
@@ -115,7 +122,7 @@ def process(u, texts, wlib):
         elif p['max'] and not p['any']: o['Max'] = p['max']
         if reps: o['Replaces'] = reps
         o['Options'] = names
-        comp_opts[ci].append(o)
+        if o not in comp_opts[ci]: comp_opts[ci].append(o)
         if generic and p['any'] and reps and len(mcs) > 1:   # every other model type that carries the replaced items gets the same option
             for cj, mj in enumerate(mcs):
                 if cj != ci and all(x in ((mj.get('Wargear') or [{}])[0]).get('InitalWargear', []) for x in reps): comp_opts[cj].append(dict(o))
@@ -185,10 +192,19 @@ for name, fids in F.items():
             was = reach(snap, [((m.get('Wargear') or [{}])[0]).get('Options', []) for m in snap['UnitComposition']['ModelCompositions']]); now = reach(u, [res[ci] for ci in range(len(res))])
             lost = [d['Key'] for d in u['UnitComposition'].get('WargearDefinitions', []) if d.get('Cost') and k(d['Key']) in was and k(d['Key']) not in now]
             if lost: res, why = None, f'would drop the priced option {lost[0]}'
-            if res is not None and not a.units:   # a rebuild must not lose an option that is offered today (split combos, rewritten names...): such units are listed to be reviewed by hand, or rebuilt on purpose with --units
-                oset = lambda unit, sets: {k(x) for ci_ in range(len(sets)) for o_ in sets[ci_] if not set(o_) - {'Max', 'PerXModels', 'Replaces', 'Options'} for x in o_.get('Options', [])}
-                dropped = oset(snap, [((m.get('Wargear') or [{}])[0]).get('Options', []) for m in snap['UnitComposition']['ModelCompositions']]) - oset(u, [res[ci] for ci in range(len(res))])
-                if dropped: res, why = None, f'would drop the option {sorted(dropped)[0]}'
+            if res is not None and not a.units:   # a rebuild must not make the unit worse: no option of a model type may disappear, and no limit (Max / per X models) may be lost or loosened. Such units are listed to be reviewed by hand, or rebuilt on purpose with --units
+                def optmap(comps, sets):
+                    out = {}
+                    for ci_, m_ in enumerate(comps):
+                        for o_ in sets[ci_]:
+                            if set(o_) - {'Max', 'PerXModels', 'Replaces', 'Options'}: continue   # bound to a detachment: kept as it is
+                            for x in o_.get('Options', []): out[(k(m_['ModelName']), k(x))] = (o_.get('Max'), o_.get('PerXModels'))
+                    return out
+                old_m = optmap(snap['UnitComposition']['ModelCompositions'], [((m.get('Wargear') or [{}])[0]).get('Options', []) for m in snap['UnitComposition']['ModelCompositions']])
+                new_m = optmap(u['UnitComposition']['ModelCompositions'], [res[ci] for ci in range(len(res))])
+                dropped = [x for x in old_m if x not in new_m]; loosened = [x for x in old_m if x in new_m and old_m[x] != new_m[x] and (old_m[x][0] or old_m[x][1])]
+                if dropped: res, why = None, f'would drop the option {dropped[0][1]} of {dropped[0][0]}'
+                elif loosened: res, why = None, f'would change the limit of {loosened[0][1]} of {loosened[0][0]}'
         if res is None:
             u.clear(); u.update(snap); tot['left untouched'] += 1; rep.append((name, u['Name'], why)); continue
         for ci, m in enumerate(u['UnitComposition']['ModelCompositions']):
