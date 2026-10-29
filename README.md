@@ -110,3 +110,5 @@ Factions are listed in `tools/all.sh` and `tools/apply_all.sh` with: the BSData 
 ## License
 
 Public domain under the [Unlicense](https://unlicense.org) (see `LICENSE`). The upstream data keeps its own licences and terms; *Warhammer 40,000* is a trademark of Games Workshop Ltd and this is an unofficial fan project.
+
+Errata and FAQs: `python -I -X utf8 tools/pack_errata.py <faction pack pdf> <data dir> <faction file name> [--date DD/MM/YYYY] [--write] [--dump FILE]` reads the "Rules Updates" pages of an official faction pack (the PDF on Warhammer Community; `Source.csv` has its link and date) and attaches each update to the datasheet, detachment or army rule it names, and each FAQ to the units it mentions. It needs poppler's `pdftotext` (set `PDFTOTEXT` when it is not on PATH). Checked so far with the Necrons pack only.
