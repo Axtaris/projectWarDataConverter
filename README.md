@@ -1,4 +1,5 @@
 # projectWarDataConverter
+> **Donations:** if you find this useful you can support the creator at [paypal.me/projectwarco](https://www.paypal.com/paypalme/projectwarco). Donations are voluntary and unlock nothing. Only the creator may receive donations for this project (see `LICENSE`).
 
 The tool that builds the faction data for [projectWar](https://github.com/Axtaris/projectWar) from community sources. Its output is published separately in [projectWarData](https://github.com/Axtaris/projectWarData).
 
